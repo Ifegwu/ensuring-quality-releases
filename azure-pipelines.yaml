@@ -6,7 +6,7 @@ stages:
     jobs:
       - job: Build
         pool:
-          name: Hosted Ubuntu-18.04
+          name: "saasApp3-0-VM"
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
@@ -37,14 +37,14 @@ stages:
                 - task: AzureWebApp@1
                   displayName: "Deploy Azure Web App"
                   inputs:
-                    azureSubscription: "Azure subscription 1"
-                    appName: "saasApp3-AppService"
+                    azureSubscription: '3ca2aacf-c15c-4375-a828-0d64713c2e00'
+                    appName: 'saasApp3-AppService'
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
       - deployment: VMDeploy
         displayName: Deploy to VM
         environment:
-          name:  TEST
+          name:  'saasApp3-AppService'
           resourceType: VirtualMachine
           tags: devops-tag
         strategy:
