@@ -1,26 +1,28 @@
-resource "azurerm_network_interface" "" {
-  name                = ""
-  location            = ""
-  resource_group_name = ""
+resource "azurerm_network_interface" "test" {
+  count               = "${var.resourceNumber}"
+  name                = "${var.application_type}-${count.index}-INT"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group}"
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = ""
+    subnet_id                     = "${var.subnet_id}"
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = ""
   }
 }
 
-resource "azurerm_linux_virtual_machine" "" {
-  name                = ""
-  location            = ""
-  resource_group_name = ""
-  size                = ""
-  admin_username      = ""
-  network_interface_ids = []
+resource "azurerm_linux_virtual_machine" "test" {
+  count                 = "${var.resourceNumber}"
+  name                  = "${var.application_type}-${count.index}-VM"
+  location              = "${var.location}"
+  resource_group_name   = "${var.resource_group}"
+  size                  = "Standard_B1s"
+  admin_username        = "${var.username}"
+  network_interface_ids = [element(azurerm_network_interface.test.*.id, count.index)]
   admin_ssh_key {
-    username   = ""
-    public_key = "file("~/.ssh/id_rsa.pub")"
+    username   = "${var.username}"
+    public_key = file("/home/${var.username}/.ssh/id_rsa.pub")
   }
   os_disk {
     caching           = "ReadWrite"
