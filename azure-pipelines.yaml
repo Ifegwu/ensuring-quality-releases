@@ -24,7 +24,7 @@ stages:
           - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
             displayName: "Upload Package"
             artifact: drop-fakerestapi
-  - stage:
+  - stage: Deploy
     jobs:
       - deployment: FakeRestAPI
         pool:
@@ -41,25 +41,25 @@ stages:
                     appName: "saasApp3-AppService"
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-    - deployment: "VMDeploy-1"
-      displayName: "Deploy to VM"
-      environment:
-        name:  "linux"
-        resourceType: "VirtualMachine"
-        tags: "linux-tag"
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - task: Bash@3
-              inputs:
-                targetType: 'inline'
-                script: |
-                  #! /bin/bash
+      - deployment: VMDeploy
+        displayName: Deploy to VM
+        environment:
+          name:  linux
+          resourceType: VirtualMachine
+          tags: devops-tag
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - task: Bash@3
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    #! /bin/bash
 
-                  sudo apt-get upgrade -y
-                  sudo apt-get install python3-pip -y
-                  sudo apt-get install unzip -y
-                  sudo apt-get install -y chromium-browser
-                  pip3 install selenium
-                  export PATH=$PATH:home/daniel
+                    sudo apt-get upgrade -y
+                    sudo apt-get install python3-pip -y
+                    sudo apt-get install unzip -y
+                    sudo apt-get install -y chromium-browser
+                    pip3 install selenium
+                    export PATH=$PATH:home/daniel
