@@ -6,7 +6,7 @@ stages:
     jobs:
       - job: Build
         pool:
-          name: Hosted Ubuntu 1604
+          name: Hosted Ubuntu 2004
         steps:
           # Needed for Terraform VM deployment
           # - task: InstallSSHKey@0
@@ -28,7 +28,7 @@ stages:
     jobs:
       - deployment: FakeRestAPI
         pool:
-          vmImage: "Ubuntu-16.04"
+          vmImage: "Ubuntu-latest"
         environment: "TEST"
         strategy:
           runOnce:
