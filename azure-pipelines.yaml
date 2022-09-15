@@ -8,7 +8,7 @@ stages:
         pool:
           name: Hosted Ubuntu-18.04
         steps:
-          #Needed for Terraform VM deployment
+          Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: 'akwari'
@@ -37,16 +37,16 @@ stages:
                 - task: AzureWebApp@1
                   displayName: "Deploy Azure Web App"
                   inputs:
-                    azureSubscription: "$(var.subscription_id)"
+                    azureSubscription: "Azure subscription 1"
                     appName: "saasApp3-AppService"
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-    - deployment: "saasApp3-0-VM"
-      displayName: "myVM"
+    - deployment: VMDeploy
+      displayName: Deploy to VM
       environment:
-        name:  "linux"
+        name:  saasApp3-0-VM
         resourceType: VirtualMachine
-        tags: "vm-tag"
+        tags: vm-tag
       strategy:
         runOnce:
           deploy:
