@@ -44,7 +44,7 @@ stages:
       - deployment: VMDeploy
         displayName: Deploy to VM
         environment:
-          name:  'saasApp3-AppService'
+          name:  'qualityApp'
           resourceType: VirtualMachine
           tags: devops-tag
         strategy:
