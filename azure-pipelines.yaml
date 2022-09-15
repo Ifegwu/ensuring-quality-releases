@@ -41,12 +41,12 @@ stages:
                     appName: "saasApp3-AppService"
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-    - deployment: VMDeploy
-      displayName: Deploy to VM
+    - deployment: "VMDeploy-1"
+      displayName: "Deploy to VM"
       environment:
-        name:  saasApp3-0-VM
-        resourceType: VirtualMachine
-        tags: vm-tag
+        name:  "linux"
+        resourceType: "VirtualMachine"
+        tags: "linux-tag"
       strategy:
         runOnce:
           deploy:
