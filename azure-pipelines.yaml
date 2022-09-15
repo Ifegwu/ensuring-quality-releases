@@ -6,18 +6,18 @@ stages:
     jobs:
       - job: Build
         pool:
-          name: Hosted Ubuntu-latest
+          name: Hosted Ubuntu-18.04
         steps:
-          # Needed for Terraform VM deployment
-          # - task: InstallSSHKey@0
-          #   inputs:
-          #     knownHostsEntry: 'KNOWN_HOSTS_STRING'
-          #     sshPublicKey: 'PUBLIC_KEY'
-          #     sshKeySecureFile: 'id_rsa'
+          Needed for Terraform VM deployment
+          - task: InstallSSHKey@0
+            inputs:
+              knownHostsEntry: 'akwari'
+              sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt'
+              sshKeySecureFile: 'id_rsa'
           - task: ArchiveFiles@2
             displayName: "Archive FakeRestAPI"
             inputs:
-              rootFolderOrFile: "path/to/fakerestapi"
+              rootFolderOrFile: "./automatedtesting/jmeter/fakerestapi"
               includeRootFolder: false
               archiveType: "zip"
               archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip"
@@ -28,7 +28,7 @@ stages:
     jobs:
       - deployment: FakeRestAPI
         pool:
-          vmImage: "Ubuntu-latest"
+          vmImage: "Ubuntu-18.04"
         environment: "TEST"
         strategy:
           runOnce:
@@ -37,29 +37,29 @@ stages:
                 - task: AzureWebApp@1
                   displayName: "Deploy Azure Web App"
                   inputs:
-                    azureSubscription: ""
-                    appName: ""
+                    azureSubscription: "$(var.subscription_id)"
+                    appName: "saasApp3-AppService"
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-    # - deployment: VMDeploy
-    #   displayName: NAME
-    #   environment:
-    #     name:  ENVIRONMENT NAME
-    #     resourceType: VirtualMachine
-    #     tags: TAG NAME
-    #   strategy:
-    #     runOnce:
-    #       deploy:
-    #         steps:
-    #         - task: Bash@3
-    #           inputs:
-    #             targetType: 'inline'
-    #             script: |
-    #               #! /bin/bash
+    - deployment: VMDeploy
+      displayName: saasApp3-0-VM
+      environment:
+        name:  ENVIRONMENT NAME
+        resourceType: VirtualMachine
+        tags: TAG NAME
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  #! /bin/bash
 
-    #               sudo apt-get upgrade -y
-    #               sudo apt-get install python3-pip -y
-    #               sudo apt-get install unzip -y
-    #               sudo apt-get install -y chromium-browser
-    #               pip3 install selenium
-    #               export PATH=$PATH:some/path
+                  sudo apt-get upgrade -y
+                  sudo apt-get install python3-pip -y
+                  sudo apt-get install unzip -y
+                  sudo apt-get install -y chromium-browser
+                  pip3 install selenium
+                  export PATH=$PATH:some/path
