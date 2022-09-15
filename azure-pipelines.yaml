@@ -8,7 +8,7 @@ stages:
         pool:
           name: Hosted Ubuntu-18.04
         steps:
-          Needed for Terraform VM deployment
+          #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: 'akwari'
