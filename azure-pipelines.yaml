@@ -41,12 +41,12 @@ stages:
                     appName: "saasApp3-AppService"
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-    - deployment: VMDeploy
-      displayName: saasApp3-0-VM
+    - deployment: "saasApp3-0-VM"
+      displayName: "myVM"
       environment:
-        name:  ENVIRONMENT NAME
+        name:  "linux"
         resourceType: VirtualMachine
-        tags: TAG NAME
+        tags: "vm-tag"
       strategy:
         runOnce:
           deploy:
@@ -62,4 +62,4 @@ stages:
                   sudo apt-get install unzip -y
                   sudo apt-get install -y chromium-browser
                   pip3 install selenium
-                  export PATH=$PATH:some/path
+                  export PATH=$PATH:home/daniel
