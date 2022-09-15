@@ -44,7 +44,7 @@ stages:
       - deployment: VMDeploy
         displayName: Deploy to VM
         environment:
-          name:  linux
+          name:  saasApp3-0-VM
           resourceType: VirtualMachine
           tags: devops-tag
         strategy:
