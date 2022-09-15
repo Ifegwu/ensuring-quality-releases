@@ -44,7 +44,7 @@ stages:
       - deployment: VMDeploy
         displayName: Deploy to VM
         environment:
-          name:  ENVIRONMENT NAME
+          # name:  ENVIRONMENT NAME
           resourceType: VirtualMachine
           tags: devops-tag
         strategy:
