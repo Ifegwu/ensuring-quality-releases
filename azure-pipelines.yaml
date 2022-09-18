@@ -1,23 +1,25 @@
 name: Azure Pipelines
 variables:
   python.version: "3.7.6"
+
 stages:
   - stage: Build
     jobs:
-      - job: Build
-        pool:
-          name: "saasApp3-0-VM"
+      - job: build_artifacts
+        displayName: BuildArtifacts
+        pool: Default
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
-              knownHostsEntry: 'akwari'
-              sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt'
+              knownHostsEntry: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt'
+              sshPublicKey: $(sshPubKey)
               sshKeySecureFile: 'id_rsa'
+              
           - task: ArchiveFiles@2
-            displayName: "Archive FakeRestAPI"
+            displayName: ArchiveFakeRestAPI
             inputs:
-              rootFolderOrFile: "./automatedtesting/jmeter/fakerestapi"
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/fakerestapi'
               includeRootFolder: false
               archiveType: "zip"
               archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip"
@@ -26,27 +28,27 @@ stages:
             artifact: drop-fakerestapi
   - stage: Deploy
     jobs:
-      - deployment: FakeRestAPI
-        pool:
-          vmImage: "Ubuntu-18.04"
-        environment: "TEST"
+      - deployment: deploy_fakeRestAPI
+        displayName: DeployFakeRestAPI
+        pool: Default
+        environment: 'TEST'
         strategy:
           runOnce:
             deploy:
               steps:
                 - task: AzureWebApp@1
-                  displayName: "Deploy Azure Web App"
+                  displayName: "DeployAzureWebApp"
                   inputs:
-                    azureSubscription: '3ca2aacf-c15c-4375-a828-0d64713c2e00'
+                    azureSubscription: 'Azure subscription 1'
                     appName: 'saasApp3-AppService'
                     appType: webApp
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
-      - deployment: VMDeploy
-        displayName: Deploy to VM
+      - deployment: deploy_to_vm
+        displayName: DeployAppToVM
         environment:
-          name:  ''
+          name:  'TEST'
           resourceType: VirtualMachine
-          tags: devops-tag
+          tags: project-3
         strategy:
           runOnce:
             deploy:
