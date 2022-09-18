@@ -9,12 +9,15 @@ stages:
         displayName: BuildArtifacts
         pool: 
           vmImage: ubuntu-latest
+        variables: 
+          myPubKey: 'test'
+          fingerPrint: 'test'
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
-              knownHostsEntry: '$(System.DefaultWorkingDirectory)/.ssh/'
-              sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTw75/E95/I9sEjnjsI8UIxNdZBAmYRjOspIRzZERgB6jj/j8cVoWLjrCfPyUAY9xZVqQJeMQO96k5a1P5DN6CuLDlc6bhUpYm0RsRBlsqxdWb4rd2ly1G7O1PaE1JHCpFvdx/MIgV65TJxvPr27FRjNmWDQWx+6Ot2wb18PpZd9gN7GSmWfqM3hwdXcjisDUobdUUrsYM/y8iFNCm5RwZZe44GjQNR91NDPdft+o/VSS3u/XSVA9Tt3pdNxxhqZxzNo+AEYiNbasf14srVbKX5Ba9WKTX36KaoiWkMaw42ZM6JC0ATNqClBSCcIXZQNNVPdPgBePMM7TShm6jVCVMK8LlEEv9gOIO3B/yoEcEi3N8eajGnBq4BXI4MgRUama2Pwq/5HYwIquQeSLcHTFptkyOxWqeOGCfv7Gbt0r/GNbd3+j9zsvYxvC0L9YW+QzxqZNf7svN+lC6SuLXscv3nXsR2jjQsT/RDFM35YV1SzojT5W4oE0uzs+l2Hp3aHag2QxsVsnVC6Zz4+JxhAqo1ZffO5KgFMLx2UcM4GyROX0GGWDEVEHwxdaz49BnwHXYPCIFF1qdnVC4wblBee3iJiFH4A/IQdV3cVEZRbxgRtH7/qFdBIttRB1lUG2ocCiBiYDhR6q26nZfRkZleo5V/ZNg8LiqFvIahNqMKi3tlw=='
+              knownHostsEntry: $(fingerPrint)
+              sshPublicKey: $(myPubkey)
               sshKeySecureFile: 'id_rsa'
               
           - task: ArchiveFiles@2
@@ -66,4 +69,4 @@ stages:
                     sudo apt-get install unzip -y
                     sudo apt-get install -y chromium-browser
                     pip3 install selenium
-                    export PATH=$PATH:home/$(vm_admin_user)
+                    export PATH=$PATH:home/akwari
