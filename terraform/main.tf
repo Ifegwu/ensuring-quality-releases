@@ -9,7 +9,7 @@ terraform {
   backend "azurerm" {
     storage_account_name = "tfstate30759"
     container_name       = "tfstate"
-    key                  = "DefaultEndpointsProtocol=https;AccountName=tfstate30759;AccountKey=0hsCkyXpvMTVa2sX65owtNynlh+KJTwSfOCP3xOsf2dhr9zRA1uZ4U+pJ36d0dN2P2RDnfOY9nV8+AStLj1zIw==;EndpointSuffix=core.windows.net"
+    key                  = "terraform."
     access_key           = "0hsCkyXpvMTVa2sX65owtNynlh+KJTwSfOCP3xOsf2dhr9zRA1uZ4U+pJ36d0dN2P2RDnfOY9nV8+AStLj1zIw=="
   }
 }
@@ -30,12 +30,12 @@ module "network" {
 }
 
 module "nsg-test" {
-  source           = "./modules/networksecuritygroup"
-  location         = "${var.location}"
-  application_type = "${var.application_type}"
-  resource_type    = "NSG"
-  resource_group   = "${module.resource_group.resource_group_name}"
-  subnet_id        = "${module.network.subnet_id_test}"
+  source              = "./modules/networksecuritygroup"
+  location            = "${var.location}"
+  application_type    = "${var.application_type}"
+  resource_type       = "NSG"
+  resource_group      = "${module.resource_group.resource_group_name}"
+  subnet_id           = "${module.network.subnet_id_test}"
   address_prefix_test = "${var.address_prefix_test}"
 }
 module "appservice" {
@@ -54,11 +54,12 @@ module "publicip" {
 }
 
 module "vm" {
-  source           = "./modules/vm" 
-  location         = "${var.location}"
-  application_type = "${var.application_type}"
-  resource_group   = "${module.resource_group.resource_group_name}"
-  resource_type    = "VM"
-  subnet_id        = "${module.network.subnet_id_test}"
-  username         = "${var.username}"
+  source                    = "./modules/vm" 
+  location                  = "${var.location}"
+  application_type          = "${var.application_type}"
+  resource_group            = "${module.resource_group.resource_group_name}"
+  resource_type             = "VM"
+  subnet_id                 = "${module.network.subnet_id_test}"
+  vm_admin_user         = "${var.vm_admin_user}"
+  public_ip_address_id      = "${module.publicip.public_ip_address_id}"
 }

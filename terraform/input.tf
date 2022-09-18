@@ -15,4 +15,6 @@ variable address_prefix_test {}
 variable address_space {}
 
 # VM
-variable username {}
+variable vm_admin_user {
+    default = "azureadmin"
+}
