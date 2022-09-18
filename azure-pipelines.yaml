@@ -10,14 +10,14 @@ stages:
         pool: 
           vmImage: ubuntu-latest
         variables: 
-          myPubKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTw75/E95/I9sEjnjsI8UIxNdZBAmYRjOspIRzZERgB6jj/j8cVoWLjrCfPyUAY9xZVqQJeMQO96k5a1P5DN6CuLDlc6bhUpYm0RsRBlsqxdWb4rd2ly1G7O1PaE1JHCpFvdx/MIgV65TJxvPr27FRjNmWDQWx+6Ot2wb18PpZd9gN7GSmWfqM3hwdXcjisDUobdUUrsYM/y8iFNCm5RwZZe44GjQNR91NDPdft+o/VSS3u/XSVA9Tt3pdNxxhqZxzNo+AEYiNbasf14srVbKX5Ba9WKTX36KaoiWkMaw42ZM6JC0ATNqClBSCcIXZQNNVPdPgBePMM7TShm6jVCVMK8LlEEv9gOIO3B/yoEcEi3N8eajGnBq4BXI4MgRUama2Pwq/5HYwIquQeSLcHTFptkyOxWqeOGCfv7Gbt0r/GNbd3+j9zsvYxvC0L9YW+QzxqZNf7svN+lC6SuLXscv3nXsR2jjQsT/RDFM35YV1SzojT5W4oE0uzs+l2Hp3aHag2QxsVsnVC6Zz4+JxhAqo1ZffO5KgFMLx2UcM4GyROX0GGWDEVEHwxdaz49BnwHXYPCIFF1qdnVC4wblBee3iJiFH4A/IQdV3cVEZRbxgRtH7/qFdBIttRB1lUG2ocCiBiYDhR6q26nZfRkZleo5V/ZNg8LiqFvIahNqMKi3tlw== akwari@saasApp3-0-VM'
-          hostEntry: 'AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
+          myPubKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt akwari@akwari-Dell-System-XPS-L502X'
+          hostEntry: 'SHA256:AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: $(hostEntry)
-              sshPublicKey: $(myPubkey)
+              sshPublicKey: '$(myPubkey)'
               sshKeySecureFile: 'id_rsa'
               
           - task: ArchiveFiles@2
