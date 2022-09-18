@@ -7,7 +7,8 @@ stages:
     jobs:
       - job: build_artifacts
         displayName: BuildArtifacts
-        pool: Default
+        pool: 
+          vmImage: ubuntu-latest
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
@@ -30,7 +31,8 @@ stages:
     jobs:
       - deployment: deploy_fakeRestAPI
         displayName: DeployFakeRestAPI
-        pool: Default
+        pool: 
+          vmImage: ubuntu-latest
         environment: 'TEST'
         strategy:
           runOnce:
