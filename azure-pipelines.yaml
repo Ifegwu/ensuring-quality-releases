@@ -44,7 +44,7 @@ stages:
                 - task: AzureWebApp@1
                   displayName: "DeployAzureWebApp"
                   inputs:
-                    azureSubscription: 'qualityApp'
+                    azureSubscription: 'quality-app'
                     appName: 'saasApp3-AppService'
                     appType: 'saasApp3'
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
