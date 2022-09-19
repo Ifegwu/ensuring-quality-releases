@@ -4,4 +4,7 @@ resource "azurerm_public_ip" "test" {
   resource_group_name = "${var.resource_group}"
   allocation_method   = "Dynamic"
 
+  tags = {
+    demo = var.demo
+  }
 }

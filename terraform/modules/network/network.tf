@@ -3,6 +3,10 @@ resource "azurerm_virtual_network" "test" {
   address_space        = "${var.address_space}"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group}"
+
+  tags = {
+    demo = var.demo
+  }
 }
 resource "azurerm_subnet" "test" {
   name                 = "${var.application_type}-${var.resource_type}-sub"

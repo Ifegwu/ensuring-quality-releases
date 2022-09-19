@@ -15,6 +15,10 @@ resource "azurerm_app_service" "test" {
   resource_group_name = "${var.resource_group}"
   app_service_plan_id = azurerm_app_service_plan.test.id
 
+  tags = {
+    demo = var.demo
+  }
+
   app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE" = 0
   }

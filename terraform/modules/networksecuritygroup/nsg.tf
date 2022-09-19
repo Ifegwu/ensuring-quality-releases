@@ -25,6 +25,10 @@ resource "azurerm_network_security_group" "nsg" {
         source_address_prefix      = "*"
         destination_address_prefix = "*"
     }
+
+    tags = {
+      demo = var.demo
+    }
 }
 resource "azurerm_subnet_network_security_group_association" "test" {
     subnet_id                 = "${var.subnet_id}"
