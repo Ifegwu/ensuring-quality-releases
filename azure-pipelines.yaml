@@ -42,7 +42,6 @@ stages:
             deploy:
               steps:
                 - task: AzureWebApp@1
-                  ConnectionType: 'AzureRM'
                   displayName: "DeployAzureWebApp"
                   inputs:
                     azureSubscription: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
