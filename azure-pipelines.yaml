@@ -1,14 +1,4 @@
 name: Azure Pipelines
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
-    appType: 'webAppLinux'
-    WebAppName: 'saasapp-type-AppService'
-    deployToSlotOrASE: true
-    ResourceGroupName: 'saasapp-rg'
-    SlotName: 'production'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 variables:
   python.version: "3.7.6"
 
@@ -52,11 +42,12 @@ stages:
             deploy:
               steps:
                 - task: AzureWebApp@1
+                  ConnectionType: 'AzureRM'
                   displayName: "DeployAzureWebApp"
                   inputs:
-                    azureSubscription: 'quality-app'
+                    azureSubscription: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
                     appName: 'saasapp-type-AppService'
-                    appType: webApp
+                    appType: 'webAppLinux'
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
                     deploymentMethod: zipDeploy
       - deployment: deploy_to_vm
