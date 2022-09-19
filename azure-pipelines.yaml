@@ -45,8 +45,8 @@ stages:
                   displayName: "DeployAzureWebApp"
                   inputs:
                     azureSubscription: 'quality-app'
-                    appName: 'saasapp3-appservice'
-                    appType: webApp
+                    appName: 'saasapp-type-AppService'
+                    appType: saasapp-type-AppService
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
                     deploymentMethod: zipDeploy
       - deployment: deploy_to_vm
