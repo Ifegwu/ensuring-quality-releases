@@ -52,9 +52,10 @@ stages:
       - deployment: deploy_to_vm
         displayName: DeployAppToVM
         environment:
-          resourceName :  saasapp-type-0-VM
+          name:  'TEST'
+          resourceName:  saasapp-type-0-VM
           resourceType: VirtualMachine
-          tags: demo
+          tags: demo 
         strategy:
           runOnce:
             deploy:
