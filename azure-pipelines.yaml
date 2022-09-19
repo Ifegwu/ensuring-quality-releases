@@ -50,10 +50,10 @@ stages:
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
                     deploymentMethod: zipDeploy
       - deployment: deploy_to_vm
-        displayName: DeployAppToVM
+        displayName: 'saasapp-type-0-VM'
         environment:
           name:  'TEST'
-          resourceType: VM
+          resourceType: 'VM'
         strategy:
           runOnce:
             deploy:
