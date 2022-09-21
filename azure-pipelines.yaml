@@ -76,3 +76,122 @@ stages:
                     sudo apt-get install -y chromium-browser
                     sudo apt-get install -y chromium-chromedriver
                     pip3 install selenium
+  - stage: Test
+    jobs:
+      - deployment: ru_ui_tests
+        displayName: FunctionalTests
+        environment: 
+          name: 'Test'
+          resourceType: 'VirtualMachine'
+        strategy: 
+          runOnce:
+            deploy:
+              steps:
+                - bash: |
+                    - bash: |
+                      cd $(Pipeline.Workspace)/selenium-atf
+                      find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
+                      unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
+                      sudo mkdir -p /var/logs/selenium && sudo chmod 664 /var/logs/selenium
+                      sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/logs/selenium/ui_tests.log
+                      # sudo python3 -u run_ui_tests.py | sudo dd of=/var/logs/selenium/ui_tests.log
+                      cd $(System.DefaultWorkingDirectory)
+                    mkdir -p logs/selenium
+                    sudo cp /var/logs/selenium/ui_tests.log logs/selenium/ui_tests.log
+                    sudo chmod 775 logs/selenium/ui_tests.log
+                    # cat logs/selenium/ui_tests.log
+                  displayName: Execute UI functional tests using Selenium
+                - task: PublishPipelineArtifact@1
+                  displayName: Publish logs from Selenium tests
+                  inputs:
+                    targetPath: '$(System.DefaultWorkingDirectory)/logs/selenium/ui_tests.log'
+                    # artifactName: 'selenium-logs-atf'
+      - job: postman_test   
+        displayName: IntegrationTests
+        pool: Default
+        steps:
+          - task: NodeTool@0
+            displayName: Install Node v16.x
+            inputs:
+              versionSpec: '16.x'
+          - bash: |
+              npm install -g newman
+              mkdir - log/newman
+            displayName: Install Newman
+          - bash: |
+              newman run automatedtesting/postman/RegressionTests.postman_collection.json \
+                        --reporters cli,junit \
+                        --reporters-junit-export log/newman.RegressionTests.xml
+                        --supress-exit-code
+            displayName: Regrassion tests
+          - bash: |
+              newman run automatedtesting/postman/ValidationTests.postman_collection.json \
+                        --reporters cli,junit \
+                        --reporters-junit-export log/newman.ValidationTest.xml
+              ls -la $(System.DefaultWorkingDirectory)/log/newman/
+            displayName: Validation tests
+          - task: PublishPipelineArtifact@1
+            displayName: Publish Newman logs
+            inputs:
+              targetPath: '$(System.DefaultWorkingDirectory)/log/newman'
+              # artifactName: 'newman-logs-atf'
+          - task: PublishTestResults@2
+            displayName: Publish Newman test results
+            inputs:
+              testRunner: 'JUnit'
+              testResultsFiles: '*.xml'
+              searchFolder: '$(System.DefaultWorkingDirectory)/log/newman'
+              mergeTestResults: true
+              testRunTitle: 'PublisNewmanTestResults'
+      - job: perfomance_tests
+        displayName: PerfomanceTests
+        pool: Default
+        steps:
+          - bash: |
+              sudo apt-get install openjdk-11-jre-headless -y
+              java --version
+              wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.2.tgz -O jmeter.tgz
+              tar xzvf jmeter.tgz
+              apache-jmeter-5.2/bin/jmeter --version
+              mkdir -p log/jmeter
+            displayName: Install JMeter
+          - bash: |
+              apache-jmeter-5.2/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
+                                    -l log/jmeter/stress-test-result.jtl \
+                                    -e -f -o log/jmeter/stress-test-html-report \
+                                    -j log/jmeter/jmeter-stress-test.log
+                cat log/jmeter/jmeter-stress-test.log
+              displayName: Spike Test
+          - bash: |
+              apache-jmeter-5.2/bin/jmeter -n -t automated-testing/jmeter/endurance-test.jmx \
+                                          -l log/jmeter/endurance-test-result.jtl \
+                                          -e -f -o log/jmeter/endurance-test-html-report \
+                                          -j log/jmeter/jmeter-endurance-test.log
+              cat log/jmeter/jmeter-endurance-test.log                             
+              displayName: Endurance Test
+          - task: ArchiveFiles@2
+            displayName: Archive JMeter Stress Test HTML Report
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip'
+              verbose: true
+          - task: ArchiveFiles@2
+            displayName: Archive JMeter endurance test HTML report
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
+              verbose: true
+          - bash: |
+              rm -rf log/jmeter/stress-test-html-report
+              rm -rf log/jmeter/endurance-test-html-report
+              cd log/jmeter/
+            displayName: Delete initial JMeter HTML test reports
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: '$(System.DefaultWorkingDirectory)/log/jmeter'
+            # artifactName: 'jmeter-logs-atf'
+            displayName: Publish logs from JMeter tests
