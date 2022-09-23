@@ -66,10 +66,6 @@
           </CSVDataSet>
           <hashTree/>
         </hashTree>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="employee" enabled="true">
-          <collectionProp name="HeaderManager.headers"/>
-        </HeaderManager>
-        <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
