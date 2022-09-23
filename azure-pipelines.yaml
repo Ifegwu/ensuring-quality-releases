@@ -9,7 +9,7 @@ stages:
         displayName: BuildArtifacts
         pool: 
           vmImage: ubuntu-latest
-        variables: 
+        # variables: 
           # myPubKey: ${myPubKey}
           # hostEntry: ${hostEntry}
         steps:
