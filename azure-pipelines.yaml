@@ -154,14 +154,14 @@ stages:
             displayName: Install JMeter
           - bash: |
               apache-jmeter-5.2/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
-                                    -l log/jmeter/stress-test-result.jtl \
+                                    -l log/jmeter/stress-test-html/stress-test-result/stress-test-result.jtl \
                                     -e -f -o log/jmeter/stress-test-html-report \
                                     -j log/jmeter/jmeter-stress-test.log
                 cat log/jmeter/jmeter-stress-test.log
               displayName: Spike Test
           - bash: |
               apache-jmeter-5.2/bin/jmeter -n -t automated-testing/jmeter/endurance-test.jmx \
-                                          -l log/jmeter/endurance-test-result.jtl \
+                                          -l log/jmeter/endurance-test-result/endurance-test-result/endurance-test-result.jtl \
                                           -e -f -o log/jmeter/endurance-test-html-report \
                                           -j log/jmeter/jmeter-endurance-test.log
               cat log/jmeter/jmeter-endurance-test.log                             
