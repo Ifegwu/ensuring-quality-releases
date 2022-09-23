@@ -10,8 +10,8 @@ stages:
         pool: 
           vmImage: ubuntu-latest
         variables: 
-          myPubKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt akwari@akwari-Dell-System-XPS-L502X'
-          hostEntry: 'SHA256:AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
+          myPubKey: ${myPubKey}
+          hostEntry: ${hostEntry}
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
@@ -88,14 +88,13 @@ stages:
             deploy:
               steps:
                 - bash: |
-                    - bash: |
-                      cd $(Pipeline.Workspace)/selenium-atf
-                      find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
-                      unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
-                      sudo mkdir -p /var/logs/selenium && sudo chmod 664 /var/logs/selenium
-                      sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/logs/selenium/ui_tests.log
-                      # sudo python3 -u run_ui_tests.py | sudo dd of=/var/logs/selenium/ui_tests.log
-                      cd $(System.DefaultWorkingDirectory)
+                    cd $(Pipeline.Workspace)/selenium-atf
+                    find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
+                    unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
+                    sudo mkdir -p /var/logs/selenium && sudo chmod 664 /var/logs/selenium
+                    sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/logs/selenium/ui_tests.log
+                    # sudo python3 -u run_ui_tests.py | sudo dd of=/var/logs/selenium/ui_tests.log
+                    cd $(System.DefaultWorkingDirectory)
                     mkdir -p logs/selenium
                     sudo cp /var/logs/selenium/ui_tests.log logs/selenium/ui_tests.log
                     sudo chmod 775 logs/selenium/ui_tests.log
