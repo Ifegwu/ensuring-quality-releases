@@ -125,7 +125,7 @@ stages:
           - bash: |
               newman run automatedtesting/postman/ValidationTests.postman_collection.json \
                         --reporters cli,junit \
-                        --reporters-junit-export log/newman/newman.ValidationTest.xml
+                        --karma-junit-export log/newman/newman.ValidationTest.xml
               ls -la $(System.DefaultWorkingDirectory)/log/newman/
             displayName: Validation tests
           - task: PublishPipelineArtifact@1
