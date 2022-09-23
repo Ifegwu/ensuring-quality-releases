@@ -119,13 +119,13 @@ stages:
           - bash: |
               newman run automatedtesting/postman/RegressionTests.postman_collection.json \
                         --reporters cli,junit \
-                        --testReportFile log/newman/newman.RegressionTests.xml
+                        --reporters-junit-export log/newman/
                         --supress-exit-code
             displayName: Regrassion tests
           - bash: |
               newman run automatedtesting/postman/ValidationTests.postman_collection.json \
                         --reporters cli,junit \
-                        --testReportFile log/newman/newman.ValidationTest.xml
+                        --reporters-junit-export log/newman/
               ls -la $(System.DefaultWorkingDirectory)/log/newman/
             displayName: Validation tests
           - task: PublishPipelineArtifact@1
