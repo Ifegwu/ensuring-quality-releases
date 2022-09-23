@@ -10,14 +10,14 @@ stages:
         pool: 
           vmImage: ubuntu-latest
         variables: 
-          myPubKey: ${myPubKey}
-          hostEntry: ${hostEntry}
+          # myPubKey: ${myPubKey}
+          # hostEntry: ${hostEntry}
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: $(hostEntry)
-              sshPublicKey: '$(myPubkey)'
+              sshPublicKey: $(myPubkey)
               sshKeySecureFile: 'id_rsa'
               
           - task: ArchiveFiles@2
