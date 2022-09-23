@@ -119,7 +119,7 @@ stages:
           - bash: |
               newman run automatedtesting/postman/RegressionTests.postman_collection.json \
                         --reporters cli,junit \
-                        --reporters-junit-export log/newman/newman.RegressionTests.xml
+                        --karma-junit-export log/newman/newman.RegressionTests.xml
                         --supress-exit-code
             displayName: Regrassion tests
           - bash: |
