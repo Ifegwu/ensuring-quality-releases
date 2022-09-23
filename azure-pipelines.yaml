@@ -107,7 +107,7 @@ stages:
                     # artifactName: 'selenium-logs-atf'
       - job: postman_test   
         displayName: IntegrationTests
-        pool: Default
+        pool: Azure Pipelines
         steps:
           - task: NodeTool@0
             displayName: Install Node v16.x
@@ -144,7 +144,7 @@ stages:
               testRunTitle: 'PublisNewmanTestResults'
       - job: perfomance_tests
         displayName: PerfomanceTests
-        pool: Default
+        pool: Azure Pipelines
         steps:
           - bash: |
               sudo apt-get install openjdk-11-jre-headless -y
