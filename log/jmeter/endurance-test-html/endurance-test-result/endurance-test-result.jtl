@@ -1,3 +1,0 @@
-timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
-1663967387137,908,GET All Activities,200,OK,Starter 1-1,text,true,,3109,198,2,2,https://saasapp-type-appservice.azurewebsites.net/api/Activities?page=employee,907,0,762
-1663967387635,518,GET All Activities,200,OK,Starter 1-2,text,true,,3109,191,1,1,https://saasapp-type-appservice.azurewebsites.net/api/Activities?page=1,518,0,366

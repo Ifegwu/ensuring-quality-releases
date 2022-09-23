@@ -109,7 +109,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/endurance-test-html/endurance-test-result/endurance-test-result.jtl</stringProp>
+          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/endurance-test-result.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>

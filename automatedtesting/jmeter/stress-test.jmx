@@ -104,7 +104,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/stress-test-html/stress-test-result/stress-test-result.jtl</stringProp>
+          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/stress-test-result.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
