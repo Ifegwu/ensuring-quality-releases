@@ -157,16 +157,16 @@ stages:
               apache-jmeter-5.2/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
                                     -l log/jmeter/stress-test-result.jtl \
                                     -e -f -o log/jmeter/stress-test-html-report \
-                                    -j log/jmeter/jmeter-stress-test.log
-                cat log/jmeter/jmeter-stress-test.log
+                                    -j log/jmeter/stress-test-html-report/jmeter.log
+                cat log/jmeter/stress-test-html-report/jmeter.log
             displayName: 'Spike Test'
           - script: |
               #! /bin/bash
               apache-jmeter-5.2/bin/jmeter -n -t automated-testing/jmeter/endurance-test.jmx \
                                           -l log/jmeter/endurance-test-result.jtl \
                                           -e -f -o log/jmeter/endurance-test-html-report \
-                                          -j log/jmeter/endurance-test.log
-              cat log/jmeter/jmeter-endurance-test.log                             
+                                          -j log/jmeter/endurance-test-html-report/jmeter.log
+              cat log/jmeter/endurance-test-html-report/jmeter.log                             
             displayName: 'Endurance Test'
           - task: ArchiveFiles@2
             displayName: Archive JMeter Stress Test HTML Report
