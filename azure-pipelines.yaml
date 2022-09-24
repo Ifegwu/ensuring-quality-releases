@@ -159,7 +159,7 @@ stages:
                                     -e -f -o log/jmeter/stress-test-html-report \
                                     -j log/jmeter/jmeter-stress-test.log
                 cat log/jmeter/jmeter-stress-test.log
-              displayName: 'Spike Test'
+            displayName: 'Spike Test'
           - script: |
               #! /bin/bash
               apache-jmeter-5.2/bin/jmeter -n -t automated-testing/jmeter/endurance-test.jmx \
