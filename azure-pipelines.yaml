@@ -167,7 +167,7 @@ stages:
                                           -e -f -o log/jmeter/endurance-test-html-report \
                                           -j log/jmeter/endurance-test.log
               cat log/jmeter/jmeter-endurance-test.log                             
-              displayName: 'Endurance Test'
+            displayName: 'Endurance Test'
           - task: ArchiveFiles@2
             displayName: Archive JMeter Stress Test HTML Report
             inputs:
