@@ -158,7 +158,7 @@ stages:
                                     -l log/jmeter/stress-test-result.jtl \
                                     -e -f -o log/jmeter/stress-test-html-report \
                                     -j log/jmeter/jmeter-stress-test.log
-              # cat log/jmeter/jmeter-stress-test.log
+              cat log/jmeter/jmeter-stress-test.log
             displayName: 'Spike Test'
           - script: |
               #! /bin/bash
@@ -166,7 +166,7 @@ stages:
                                           -l log/jmeter/endurance-test-result.jtl \
                                           -e -f -o log/jmeter/endurance-test-html-report \
                                           -j log/jmeter/jmeter-endurance-test.log
-              # cat log/jmeter/jmeter-endurance-test.log                             
+              cat log/jmeter/jmeter-endurance-test.log                             
             displayName: 'Endurance Test'
           - task: ArchiveFiles@2
             displayName: Archive JMeter Stress Test HTML Report
