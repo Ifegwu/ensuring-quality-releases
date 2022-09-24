@@ -9,9 +9,6 @@ stages:
         displayName: BuildArtifacts
         pool: 
           vmImage: ubuntu-latest
-        variables: 
-          myPubKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt akwari@akwari-Dell-System-XPS-L502X'
-          hostEntry: 'SHA256:AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
@@ -168,22 +165,22 @@ stages:
                                           -j log/jmeter/jmeter-endurance-test.log
               cat log/jmeter/jmeter-endurance-test.log                             
             displayName: 'Endurance Test'
-          - task: ArchiveFiles@2
-            displayName: Archive JMeter Stress Test HTML Report
-            inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report'
-              includeRootFolder: false
-              archiveType: 'zip'
-              archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip'
-              verbose: true
-          - task: ArchiveFiles@2
-            displayName: 'Archive JMeter endurance test HTML report'
-            inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report'
-              includeRootFolder: false
-              archiveType: 'zip'
-              archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
-              verbose: true
+          # - task: ArchiveFiles@2
+          #   displayName: Archive JMeter Stress Test HTML Report
+          #   inputs:
+          #     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report'
+          #     includeRootFolder: false
+          #     archiveType: 'zip'
+          #     archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip'
+          #     verbose: true
+          # - task: ArchiveFiles@2
+          #   displayName: 'Archive JMeter endurance test HTML report'
+          #   inputs:
+          #     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report'
+          #     includeRootFolder: false
+          #     archiveType: 'zip'
+          #     archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
+          #     verbose: true
           - script: |
               #! /bin/bash
               rm -rf log/jmeter/stress-test-html-report

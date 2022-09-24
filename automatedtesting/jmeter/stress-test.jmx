@@ -29,12 +29,12 @@
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET All Activities" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="page" elementType="HTTPArgument">
+              <elementProp name="id" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${csvPageNumber}</stringProp>
+                <stringProp name="Argument.value">${Id}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">page</stringProp>
+                <stringProp name="Argument.name">id</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -56,13 +56,13 @@
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="filename">/home/akwari/ensuring-quality-releases/automatedtesting/jmeter/employees.csv</stringProp>
+            <stringProp name="filename">/home/akwari/ensuring-quality-releases/automatedtesting/jmeter/ids.csv</stringProp>
             <boolProp name="ignoreFirstLine">false</boolProp>
             <boolProp name="quotedData">false</boolProp>
             <boolProp name="recycle">true</boolProp>
             <stringProp name="shareMode">shareMode.all</stringProp>
             <boolProp name="stopThread">false</boolProp>
-            <stringProp name="variableNames">csvPageNumber</stringProp>
+            <stringProp name="variableNames">Id</stringProp>
           </CSVDataSet>
           <hashTree/>
         </hashTree>
@@ -102,6 +102,10 @@
           </objProp>
           <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/stress-test-result.jtl</stringProp>
         </ResultCollector>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers"/>
+        </HeaderManager>
         <hashTree/>
       </hashTree>
     </hashTree>
