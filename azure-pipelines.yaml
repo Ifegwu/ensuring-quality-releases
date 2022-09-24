@@ -9,15 +9,15 @@ stages:
         displayName: BuildArtifacts
         pool: 
           vmImage: ubuntu-latest
-        variables: 
-          myPubKey: ${myPubKey}
-          hostEntry: ${hostEntry}
+        # variables: 
+        #   myPubKey: ${myPubKey}
+        #   hostEntry: ${hostEntry}
         steps:
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
-              knownHostsEntry: $(hostEntry)
-              sshPublicKey: '$(myPubkey)'
+              knownHostsEntry: '${hostEntry}'
+              sshPublicKey: '${myPubkey}'
               sshKeySecureFile: 'id_rsa'
               
           - task: ArchiveFiles@2
