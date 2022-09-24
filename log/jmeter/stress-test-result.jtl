@@ -1,3 +1,0 @@
-timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
-1663976202147,16284,GET All Activities,200,OK,Stress Test 1-1,text,true,,3109,165,2,2,https://saasapp-type-appservice.azurewebsites.net/api/Activities?page=1,16284,0,1422
-1663976202329,16102,GET All Activities,200,OK,Stress Test 1-2,text,true,,3109,165,2,2,https://saasapp-type-appservice.azurewebsites.net/api/Activities?page=2,16102,0,1240
