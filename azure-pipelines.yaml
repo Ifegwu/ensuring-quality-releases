@@ -61,7 +61,7 @@ stages:
               allowTelemetryCollection: true
 
           - task: CopyFiles@2
-            displayName: 'Terraform Plan'
+            displayName: 'Files to be published'
             inputs:
               sourceFolder: $(System.DefaultWorkingDirectory)/terraform
               Contents: |
