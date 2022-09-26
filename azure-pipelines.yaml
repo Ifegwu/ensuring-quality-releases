@@ -50,6 +50,7 @@ stages:
               backendAzureRmStorageAccountName: 'tstate8969'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
+              commandOptions: '-reconfigure'
               allowTelemetryCollection: true
 
           - task: TerraformCLI@0
