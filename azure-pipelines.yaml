@@ -43,7 +43,7 @@ stages:
           - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
             displayName: 'InstallTerraform'
             inputs:
-              terraformVersion: '1.2.7'
+              terraformVersion: '0.15.0'
 
           - task: TerraformTaskV1@0
             displayName: 'Terraform Init'
@@ -86,9 +86,7 @@ stages:
               provider: 'azurerm'
               command: 'apply'
               commandOptions: |
-                -auto-approve 
-                -out=$(System.DefaultWorkingDirectory)/terraform/terraform.tfplan 
-                -detailed-exitcode
+                -auto-approve -out=$(System.DefaultWorkingDirectory)/terraform/terraform.tfplan -detailed-exitcode
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               environmentServiceName: '$(serviceConnectionName)'
 
