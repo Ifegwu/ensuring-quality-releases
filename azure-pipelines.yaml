@@ -28,10 +28,10 @@ stages:
         pool: 
           vmImage: $(vmImageName)
         steps:
-          - task: TerraformInstaller@0
-            displayName: install terraform
-            inputs:
-              terraformVersion: $(terraform.version)
+          # - task: TerraformInstaller@0
+          #   displayName: install terraform
+          #   inputs:
+          #     terraformVersion: $(terraform.version)
         #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
@@ -46,7 +46,7 @@ stages:
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
-              backendAzureRmResourceGroupName: 'saasapp-rg'
+              backendAzureRmResourceGroupName: 'qrdevopsRG'
               backendAzureRmStorageAccountName: 'tstate8969'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
