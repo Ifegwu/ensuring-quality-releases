@@ -23,8 +23,8 @@ stages:
   - stage: provision
     displayName: 'Provision'
     jobs:
-      - job: ProvisionInfrastructure
-        displayName: 'Provision Infrastructure'
+      - job: TerraformTasks
+        displayName: 'Terraform Tasks'
         pool: 
           vmImage: $(vmImageName)
         steps:
