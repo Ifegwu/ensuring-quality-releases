@@ -49,7 +49,7 @@ stages:
               backendAzureRmResourceGroupName: 'qrdevopsRG'
               backendAzureRmStorageAccountName: 'tstate8969'
               backendAzureRmContainerName: 'tstate'
-              backendAzureRmKey: 'terraform.tfstate'
+              backendAzureRmKey: '$(System.DefaultWorkingDirectory)/terraform/terraform.tfstate'
               commandOptions: '-reconfigure'
               allowTelemetryCollection: true
 
