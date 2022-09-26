@@ -46,7 +46,7 @@ stages:
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
-              backendAzureRmResourceGroupName: 'qrdevopsRG'
+              backendAzureRmResourceGroupName: 'saasapp-rg'
               backendAzureRmStorageAccountName: 'tstate8969'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
