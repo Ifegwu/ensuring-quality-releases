@@ -40,7 +40,7 @@ stages:
               sshKeySecureFile: 'id_rsa' 
 
           - task: TerraformCLI@0
-            displayName: 'Terraform Init'
+            displayName: 'Terraform Init -Reconfigure'
             inputs:
               command: 'init -reconfigure'
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
