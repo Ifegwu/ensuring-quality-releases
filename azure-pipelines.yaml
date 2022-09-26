@@ -70,7 +70,7 @@ stages:
                 !**\.terraform\** 
               TargetFolder: '$(Build.StagingDirectory)'
               
-          - task: TerraformTaskV0@1
+          - task: TerraformTaskV1@0
             displayName: 'Terraform Plan'
             inputs:
               command: 'plan'
