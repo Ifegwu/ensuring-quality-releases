@@ -96,7 +96,7 @@ stages:
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
         artifactName: 'drop-fakerestapi'
-        
+
     - task: ArchiveFiles@2
       displayName: Archive Selenium
       inputs:
@@ -196,9 +196,10 @@ stages:
         displayName: Publish Newman logs
         inputs:
           targetPath: '$(System.DefaultWorkingDirectory)/log/newman'
+          
       - task: PublishTestResults@2
-          displayName: Publish Newman test results
-          inputs:
+        displayName: Publish Newman test results
+        inputs:
             testResultsFiles: '*.xml'
             searchFolder: '$(System.DefaultWorkingDirectory)/log/newman'
             mergeTestResults: true
