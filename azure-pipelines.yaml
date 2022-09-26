@@ -28,7 +28,7 @@ stages:
         pool: 
           vmImage: $(vmImageName)
         steps:
-          - task: TerraformInstaller
+          - task: TerraformInstaller@0
             displayName: install terraform
             inputs:
               terraformVersion: latest
