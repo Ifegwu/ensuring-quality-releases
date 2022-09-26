@@ -40,7 +40,7 @@ stages:
               sshKeySecureFile: 'id_rsa' 
 
           - task: TerraformCLI@0
-            displayName: Terraform Init
+            displayName: 'Terraform Init'
             inputs:
               command: 'init'
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
@@ -62,7 +62,7 @@ stages:
               allowTelemetryCollection: true
           
           - task: TerraformCLI@0
-            displayName: Terraform Apply
+            displayName: 'Terraform Apply'
             inputs:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
