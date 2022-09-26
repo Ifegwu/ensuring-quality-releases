@@ -33,13 +33,13 @@ stages:
             inputs:
               terraformVersion: $(terraform.version)
         #Needed for Terraform VM deployment
-          - task: InstallSSHKey@0
+          - task: InstallSSHKey@1
             inputs:
               knownHostsEntry: $(hostEntry)
               sshPublicKey: '$(myPubkey)'
               sshKeySecureFile: 'id_rsa' 
 
-          - task: TerraformCLI@0
+          - task: TerraformCLI@1
             displayName: 'Terraform Init'
             inputs:
               command: 'init'
@@ -53,7 +53,7 @@ stages:
               commandOptions: '-reconfigure'
               allowTelemetryCollection: true
 
-          - task: TerraformCLI@0
+          - task: TerraformCLI@1
             displayName: 'Terraform Plan'
             inputs:
               command: 'plan'
@@ -62,7 +62,7 @@ stages:
               commandOptions: '-lock=false'
               allowTelemetryCollection: true
           
-          - task: TerraformCLI@0
+          - task: TerraformCLI@1
             displayName: 'Terraform Apply'
             inputs:
               command: 'apply'
