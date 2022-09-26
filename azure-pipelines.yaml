@@ -42,7 +42,7 @@ stages:
           - task: TerraformCLI@0
             displayName: 'Terraform Init'
             inputs:
-              command: 'init'
+              command: 'init -reconfigure'
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               backendType: 'azurerm'
               backendServiceArm: $(serviceConnectionName)
