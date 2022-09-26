@@ -78,36 +78,37 @@ stages:
               
 - stage: Build
   jobs:
-    - job: build_artifacts
-      displayName: BuildArtifacts
-      pool: 
-        vmImage: $(vmImageName)
-      steps:    
-      - task: ArchiveFiles@2
-        displayName: ArchiveFakeRestAPI
-        inputs:
+  - job: build_artifacts
+    displayName: BuildArtifacts
+    pool: 
+      vmImage: $(vmImageName)
+    steps:    
+    - task: ArchiveFiles@2
+      displayName: ArchiveFakeRestAPI
+      inputs:
           rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter/fakerestapi'
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip"
 
-        - task: PublishPipelineArtifact@1
-          displayName: Publish Fakerestapi as Artifact
-          inputs:
-            targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
-            artifactName: 'drop-fakerestapi'
-        - task: ArchiveFiles@2
-          displayName: Archive Selenium
-          inputs:
-            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/selenium'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
-        - task: PublishPipelineArtifact@1
-          displayName: Publish Selenium Artifact
-          inputs:
-            targetPath: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
-            artifactName: 'drop-selenium'
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Fakerestapi as Artifact
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+        artifactName: 'drop-fakerestapi'
+        
+    - task: ArchiveFiles@2
+      displayName: Archive Selenium
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/selenium'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Selenium Artifact
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
+        artifactName: 'drop-selenium'
   
 - stage: Deploy
   jobs:
