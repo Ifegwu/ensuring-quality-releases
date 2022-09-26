@@ -58,7 +58,7 @@ stages:
             inputs:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              environmentServiceName: $(serviceConnectionName)
+              environmentServiceName: '$(serviceConnectionName)'
               commandOptions: '-lock=false'
               allowTelemetryCollection: true
           
