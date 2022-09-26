@@ -3,8 +3,7 @@ name: Azure Pipelines
 trigger: 
   - main
 variables:
-  python.version: '3.8.10'
-  terraform.version: '1.2.8'
+  python.version: "3.7.6"
   
   # web app name
   webAppName: 'saasapp-type-AppService'
@@ -23,15 +22,16 @@ stages:
   - stage: provision
     displayName: 'Provision'
     jobs:
-      - job: TerraformTasks
-        displayName: 'Terraform Tasks'
+      - job: provision_az_resources
+        displayName: 'ProvisionAzResources'
         pool: 
           vmImage: $(vmImageName)
         steps:
-          - task: TerraformInstaller@0
-            displayName: install terraform
+          - task: DownloadSecureFile@1
+            name: varable_definitions
+            displayName: Download terraform.tfvars
             inputs:
-              terraformVersion: $(terraform.version)
+              secureFile: 'terraform.tfvars'
           #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
@@ -39,37 +39,52 @@ stages:
               sshPublicKey: '$(myPubkey)'
               sshKeySecureFile: 'id_rsa' 
 
-          - task: TerraformCLI@0
+          - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+            displayName: 'InstallTerraform'
+            inputs:
+              terraformVersion: '1.2.7'
+
+          - task: TerraformTaskV2@2
             displayName: 'Terraform Init'
             inputs:
+              provider: "azurerm"
+              backendType: "azurerm"
               command: 'init'
+              commandOptions: |
+                -reconfigure
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
               backendAzureRmResourceGroupName: 'qrdevopsRG'
               backendAzureRmStorageAccountName: 'tstate8969'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
-              commandOptions: '-reconfigure'
               allowTelemetryCollection: true
 
-          - task: TerraformCLI@0
+          - task: CopyFiles@2
             displayName: 'Terraform Plan'
             inputs:
+              sourceFolder: $(System.DefaultWorkingDirectory)/terraform
+              Contents: |
+                **
+                !**\.terraform\** 
+              TargetFolder: '$(Build.StagingDirectory)'
+              
+          - task: TerraformTaskV1@0
+              displayName: 'Terraform Plan'
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               environmentServiceName: '$(serviceConnectionName)'
               commandOptions: '-lock=false'
               allowTelemetryCollection: true
           
-          - task: TerraformCLI@0
+          - task: TerraformTaskV1@0
             displayName: 'Terraform Apply'
             inputs:
+              provider: 'azurerm'
               command: 'apply'
+              commandOptions: '-auto-approve -out=$(System.DefaultWorkingDirectory)/terraform/terraform.tfplan -detailed-exitcode'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               environmentServiceName: '$(serviceConnectionName)'
-              commandOptions: '-out=$(System.DefaultWorkingDirectory)/terraform/terraform.tfplan -detailed-exitcode'
-              allowTelemetryCollection: true
 
               
   - stage: Build
