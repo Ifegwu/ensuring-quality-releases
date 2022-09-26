@@ -45,8 +45,8 @@ stages:
               command: 'init'
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               backendType: 'azurerm'
-              backendServiceArm: '$(serviceConnectionName)'
-              # environmentServiceName: $(serviceConnectionName)
+              # backendServiceArm: '$(serviceConnectionName)'
+              environmentServiceName: '$(serviceConnectionName)'
               backendAzureRmResourceGroupName: 'saasapp-rg'
               backendAzureRmStorageAccountName: 'tstate8969'
               backendAzureRmContainerName: 'tstate'
@@ -67,7 +67,7 @@ stages:
             inputs:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              environmentServiceName: $(serviceConnectionName)
+              environmentServiceName: '$(serviceConnectionName)'
               allowTelemetryCollection: true
 
               
