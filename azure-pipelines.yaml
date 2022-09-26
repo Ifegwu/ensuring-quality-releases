@@ -40,9 +40,9 @@ stages:
               sshKeySecureFile: 'id_rsa' 
 
           - task: TerraformCLI@0
-            displayName: 'Terraform Init -Reconfigure'
+            displayName: 'Terraform Init'
             inputs:
-              command: 'init -reconfigure'
+              command: 'init'
               workiDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               backendType: 'azurerm'
               backendServiceArm: $(serviceConnectionName)
