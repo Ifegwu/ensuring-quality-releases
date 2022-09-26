@@ -57,7 +57,7 @@ stages:
             inputs:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              environmentServiceName: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
+              environmentServiceName: '$(serviceConnectionName)'
               commandOptions: '-lock=false'
               allowTelemetryCollection: true
           
@@ -66,8 +66,8 @@ stages:
             inputs:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              environmentServiceName: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
-              commandOptions: '-out=$(System.DefaultWorkingDirectory)/terraform.tfplan -detailed-exitcode'
+              environmentServiceName: '$(serviceConnectionName)'
+              commandOptions: '-out=$(System.DefaultWorkingDirectory)/terraform/terraform.tfplan -detailed-exitcode'
               allowTelemetryCollection: true
 
               
