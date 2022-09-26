@@ -4,7 +4,7 @@ trigger:
   - main
 variables:
   python.version: "3.7.6"
-  terraform.version: '1.2.8'
+  terraform.version: '1.2.5'
   
   # web app name
   webAppName: 'saasapp-type-AppService'
@@ -31,7 +31,7 @@ stages:
           - task: TerraformInstaller@0
             displayName: install terraform
             inputs:
-              terraformVersion: latest
+              terraformVersion: $(terraform.version)
         #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
