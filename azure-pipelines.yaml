@@ -3,8 +3,8 @@ name: Azure Pipelines
 trigger: 
   - main
 variables:
-  python.version: "3.7.6"
-  terraform.version: '1.2.5'
+  python.version: '3.8.10'
+  terraform.version: '1.2.8'
   
   # web app name
   webAppName: 'saasapp-type-AppService'
@@ -13,7 +13,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # Service Connection Name
-  serviceConnectionName: 'quality-app'
+  serviceConnectionName: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
 
   # Environment name
   environmentName: 'Test'
@@ -32,7 +32,7 @@ stages:
             displayName: install terraform
             inputs:
               terraformVersion: $(terraform.version)
-        #Needed for Terraform VM deployment
+          #Needed for Terraform VM deployment
           - task: InstallSSHKey@0
             inputs:
               knownHostsEntry: $(hostEntry)
