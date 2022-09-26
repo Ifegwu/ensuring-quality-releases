@@ -13,7 +13,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # Service Connection Name
-  serviceConnectionName: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
+  serviceConnectionName: 'quality-app'
 
   # Environment name
   environmentName: 'Test'
