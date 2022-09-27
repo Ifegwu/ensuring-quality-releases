@@ -25,8 +25,9 @@ resource "azurerm_linux_virtual_machine" "test" {
   # network_interface_ids = [zurerm_network_interface.test.id]
   network_interface_ids = [element(azurerm_network_interface.test.*.id, count.index)]
   admin_ssh_key {
-    username   = "${var.vm_admin_user}"
-   #public_key = file("/home/${var.vm_admin_user}/.ssh/id_rsa.pub")
+    #username   = "${var.vm_admin_user}"
+    username    = "akwari"
+    #public_key = file("/home/${var.vm_admin_user}/.ssh/id_rsa.pub")
    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1A1wSSJHY6uqogNJd+T1m+B9q14QJAy1Pj+HZ3wJ41lbMavEwzX/quexa+X6niENryG3x/Ba9gk64DgAh/mE/6ZknExv/z6sUw4UAkuaRuFCSs9b2xehBMgQxg7ojnz5JDrdoeDYNrEmU2cvKDZy0XdgQXbeyt89pFk7c6UdHuVnK+UtTLeu2NRsQowgSLbblrlcNtEioCDmUg49jTfwpZaD74K+jaaVZO1v8DGbfgQfHej9XNEXHK5sQ1mfz3dYxq+2LgCxdhIpLMWriGCPtzAfpzhi7F6pBiI2WxfG5T8Q8s9nLeZEdv0WdLqTFWIxUnc7jCLyfgzh6Zm6E45tt akwari@akwari-Dell-System-XPS-L502X"
   }
   os_disk {
