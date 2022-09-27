@@ -67,7 +67,7 @@ stages:
           - task: AzureCLI@1
             displayName: Set Environment Variables for Terraform
             inputs:
-              azureSubscription: service-connection-azurerm
+              azureSubscription: '$(serviceConnectionName)'
               scriptLocation: inlineScript
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               addSpnToEnvironment: true
