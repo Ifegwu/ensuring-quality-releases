@@ -64,6 +64,7 @@ stages:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         environmentServiceName: '$(serviceConnectionName)'
+        commandOptions: '-lock=false'
         allowTelemetryCollection: true
 
               
