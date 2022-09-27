@@ -49,14 +49,14 @@ stages:
         backendAzureRmKey: 'terraform.tfstate'
         allowTelemetryCollection: true
     
-    # - task: TerraformCLI@0
-    #   displayName: 'Terraform Plan'
-    #   inputs:
-    #     command: 'plan'
-    #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-    #     environmentServiceName: '$(serviceConnectionName)'
-    #     commandOptions: '-lock=false'
-    #     allowTelemetryCollection: true
+    - task: TerraformCLI@0
+      displayName: 'Terraform Plan'
+      inputs:
+        command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        environmentServiceName: '$(serviceConnectionName)'
+        commandOptions: '-lock=false'
+        allowTelemetryCollection: true
        
     - task: TerraformCLI@0
       displayName: Terraform Apply
