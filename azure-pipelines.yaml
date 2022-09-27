@@ -64,7 +64,7 @@ stages:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         environmentServiceName: '$(serviceConnectionName)'
-        commandOptions: '-lock=false -refresh=false'
+        commandOptions: '-lock=false'
         allowTelemetryCollection: true
 
               
@@ -125,7 +125,7 @@ stages:
     displayName: Deploy Virtual Machine
     environment:
       name:  $(environmentName)
-      resourceName: 'saasapp-type-0-VM'
+      resourceName: 'saasapp-type-1-VM'
       resourceType: 'VirtualMachine'
       tags: 'demo' 
     strategy:
