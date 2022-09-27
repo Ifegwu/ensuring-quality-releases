@@ -48,6 +48,7 @@ stages:
         backendAzureRmContainerName: 'tstate'
         backendAzureRmKey: 'terraform.tfstate'
         allowTelemetryCollection: true
+        commandOptions: '-reconfigure'
     
     - task: TerraformCLI@0
       displayName: 'Terraform Plan'
