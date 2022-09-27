@@ -125,7 +125,7 @@ stages:
     displayName: Deploy Virtual Machine
     environment:
       name:  $(environmentName)
-      resourceName: "saasapp-type-1-VM"
+      resourceName: "saasapp-type-0-VM"
       resourceType: 'VirtualMachine'
       tags: 'demo' 
     strategy:
