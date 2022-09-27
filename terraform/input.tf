@@ -19,5 +19,4 @@ variable vm_admin_user {
     default = "azureadmin"
 }
 
-variable vm_public_key {}
 variable demo {}
