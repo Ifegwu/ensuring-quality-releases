@@ -56,6 +56,11 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         environmentServiceName: '$(serviceConnectionName)'
+        backendAzureRmResourceGroupName: 'saasRG'
+        backendAzureRmStorageAccountName: 'tstate16811'
+        backendAzureRmContainerName: 'tstate'
+        backendAzureRmKey: 'terraform.tfstate'
+        allowTelemetryCollection: true
         commandOptions: '-lock=false -refresh=false'
         allowTelemetryCollection: true
        
