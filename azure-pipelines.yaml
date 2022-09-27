@@ -36,19 +36,19 @@ stages:
         sshPublicKey: '$(myPubKey)'
         sshKeySecureFile: 'id_rsa'
 
-    # - task: TerraformCLI@0
-    #   displayName: Terraform Init
-    #   inputs:
-    #     command: 'init'
-    #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-    #     backendType: 'azurerm'
-    #     backendServiceArm: '$(serviceConnectionName)'
-    #     backendAzureRmResourceGroupName: 'qrdevopsRG'
-    #     backendAzureRmStorageAccountName: 'tstate8969'
-    #     backendAzureRmContainerName: 'tstate'
-    #     backendAzureRmKey: 'terraform.tfstate'
-    #     allowTelemetryCollection: true
-    #     commandOptions: '-reconfigure'
+    - task: TerraformCLI@0
+      displayName: Terraform Init
+      inputs:
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        backendType: 'azurerm'
+        backendServiceArm: '$(serviceConnectionName)'
+        backendAzureRmResourceGroupName: 'qrdevopsRG'
+        backendAzureRmStorageAccountName: 'tstate16811'
+        backendAzureRmContainerName: 'tstate'
+        backendAzureRmKey: 'terraform.tfstate'
+        allowTelemetryCollection: true
+        commandOptions: '-reconfigure'
     
     - task: TerraformCLI@0
       displayName: 'Terraform Plan'
