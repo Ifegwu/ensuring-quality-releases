@@ -12,7 +12,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # Service Connection Name
-  serviceConnectionName: 'Azure subscription 1(3ca2aacf-c15c-4375-a828-0d64713c2e00)'
+  serviceConnectionName: 'ensuring-quality-releases'
 
   # Environment name
   environmentName: 'Test'
@@ -49,6 +49,7 @@ stages:
             inputs:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+              commandOptions: '-backend-config=$(azsecret.secureFilePath)'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
               backendAzureRmResourceGroupName: 'saasRG'
@@ -56,7 +57,6 @@ stages:
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
               allowTelemetryCollection: true
-              commandOptions: '-reconfigure'
               
           - task: TerraformCLI@0
             displayName: Terraform Validate
