@@ -60,7 +60,6 @@ stages:
         backendAzureRmStorageAccountName: 'tstate16811'
         backendAzureRmContainerName: 'tstate'
         backendAzureRmKey: 'terraform.tfstate'
-        allowTelemetryCollection: true
         commandOptions: '-lock=false -refresh=false'
         allowTelemetryCollection: true
        
