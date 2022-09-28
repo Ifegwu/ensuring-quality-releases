@@ -4,20 +4,6 @@ trigger:
   - main
 variables:
 - group: azsecret
-  python.version: "3.7.6"
-  
-  # web app name
-  webAppName: 'project3App-AppService'
-
-  # VM image Agent name
-  vmImageName: 'ubuntu-latest'
-
-  # Service Connection Name
-  serviceConnectionName: 'eqReleases'
-
-  # Environment name
-  environmentName: 'Test'
-
 
 stages:
   - stage: Provision
@@ -25,7 +11,7 @@ stages:
       - job: TerraformTasks
         displayName: Terraform Tasks
         pool:
-          vmImage: $(vmImageName)
+          vmImage: 'ubuntu-latest'
         steps:
           - task: DownloadSecureFile@1
             displayName: azsecret.conf file Download
@@ -52,7 +38,7 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               commandOptions: '-backend-config=$(azsecret.secureFilePath)'
               backendType: 'azurerm'
-              backendServiceArm: '$(serviceConnectionName)'
+              backendServiceArm: 'eqReleases'
               backendAzureRmResourceGroupName: 'tstate'
               backendAzureRmStorageAccountName: 'tstate5274'
               backendAzureRmContainerName: 'tstate'
@@ -68,7 +54,7 @@ stages:
           - task: AzureCLI@1
             displayName: Set Environment Variables for Terraform
             inputs:
-              azureSubscription: '$(serviceConnectionName)'
+              azureSubscription: 'eqReleases'
               scriptLocation: inlineScript
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               addSpnToEnvironment: true
@@ -83,7 +69,7 @@ stages:
             inputs:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              environmentServiceName: '$(serviceConnectionName)'
+              environmentServiceName: 'eqReleases'
               allowTelemetryCollection: true
             
           - task: TerraformCLI@0
@@ -91,7 +77,7 @@ stages:
             inputs:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              environmentServiceName: '$(serviceConnectionName)'
+              environmentServiceName: 'eqReleases'
               commandOptions: '-lock=false'
               allowTelemetryCollection: true
               
@@ -100,7 +86,7 @@ stages:
       - job: build_artifacts
         displayName: BuildArtifacts
         pool: 
-          vmImage: $(vmImageName)
+          vmImage: 'ubuntu-latest'
         steps:    
           - task: ArchiveFiles@2
             displayName: ArchiveFakeRestAPI
@@ -135,8 +121,8 @@ stages:
     - deployment: deploy_fakeRestAPI
       displayName: DeployFakeRestAPI
       pool: 
-        vmImage: $(vmImageName)
-      environment: $(environmentName)
+        vmImage: 'ubuntu-latest'
+      environment: Test
       strategy:
         runOnce:
           deploy:
@@ -144,15 +130,15 @@ stages:
                 - task: AzureWebApp@1
                   displayName: "DeployAzureWebApp"
                   inputs:
-                    azureSubscription: $(serviceConnectionName)
-                    appName: $(webAppName)
+                    azureSubscription: 'eqReleases'
+                    appName: 'project3App-AppService'
                     appType: 'webAppLinux'
                     package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
                     deploymentMethod: 'auto'
     - deployment: VMDeploy
       displayName: Deploy Virtual Machine
       environment:
-        name:  $(environmentName)
+        name:  Test
         resourceName: "project3App-0-VM"
         resourceType: 'VirtualMachine'
         tags: 'demo' 
@@ -182,7 +168,7 @@ stages:
     - job: IntegrationTests   
       displayName: Integration Tests
       pool: 
-        vmImage: $(vmImageName)
+        vmImage: 'ubuntu-latest'
         steps:
         - task: NodeTool@0
           displayName: Install Node v16.x
@@ -274,7 +260,7 @@ stages:
     - job: perfomance_tests
       displayName: 'PerfomanceTests'
       pool: 
-        vmImage: $(vmImageName)
+        vmImage: 'ubuntu-latest'
         steps:
             - bash: |
                 sudo apt-get install openjdk-11-jre-headless -y
