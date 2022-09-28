@@ -3,10 +3,11 @@ name: Azure Pipelines
 trigger: 
   - main
 variables:
+  - group: azsecret
   python.version: "3.7.6"
   
   # web app name
-  webAppName: 'project3App-type-AppService'
+  webAppName: 'project3App-AppService'
 
   # VM image Agent name
   vmImageName: 'ubuntu-latest'
@@ -35,7 +36,7 @@ stages:
           - task: InstallSSHKey@0
             displayName: Install SSH key
             inputs:
-              knownHostsEntry: 'known-host'
+              knownHostsEntry: 'known_hosts'
               sshPublicKey: '$(myPubKey)'
               sshKeySecureFile: 'id_rsa'
 
@@ -152,7 +153,7 @@ stages:
       displayName: Deploy Virtual Machine
       environment:
         name:  $(environmentName)
-        resourceName: "project3App-type-0-VM"
+        resourceName: "project3App-0-VM"
         resourceType: 'VirtualMachine'
         tags: 'demo' 
       strategy:
