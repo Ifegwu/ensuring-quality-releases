@@ -52,7 +52,7 @@ stages:
               commandOptions: '-backend-config=$(azsecret.secureFilePath) -reconfigure'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
-              backendAzureRmResourceGroupName: 'saasappRG'
+              backendAzureRmResourceGroupName: 'saasRG'
               backendAzureRmStorageAccountName: 'tstate16811'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
