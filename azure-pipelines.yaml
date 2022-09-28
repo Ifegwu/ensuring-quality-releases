@@ -49,7 +49,7 @@ stages:
             inputs:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              commandOptions: '-backend-config=$(azsecret.secureFilePath) -reconfigure'
+              commandOptions: '-backend-config=$(azsecret.secureFilePath)'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
               backendAzureRmResourceGroupName: 'saasRG'
