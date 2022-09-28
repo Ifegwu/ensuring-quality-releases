@@ -12,7 +12,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # Service Connection Name
-  serviceConnectionName: 'ensuring-quality-releases'
+  serviceConnectionName: 'EQ-releases'
 
   # Environment name
   environmentName: 'Test'
