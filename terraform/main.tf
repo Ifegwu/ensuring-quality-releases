@@ -7,11 +7,11 @@ provider "azurerm" {
 }
 terraform {
   backend "azurerm" {
-    resource_group_name  = "saasRG"
-    storage_account_name = "tstate16811"
+    resource_group_name  = "appRG"
+    storage_account_name = "tstate15484"
     container_name       = "tstate"
     key                  = "terraform.tfstate"
-    access_key           = "PDsI5TR2RPf397lNrziJO8M62cu0jfPBTNfe5//ISzGqHozZn/mSoc0parDsPnWiXQ6ZPrEew/xK+ASt+EldUg=="
+    access_key           = "pGWPeaAnJwLZMRLX+botAGqScJF3kI3LTez4sSVxFd4C4Ogn3GK5BZN+yS33RDkIMASpez3onrOb+AStvUJpGQ=="
   }
 }
 module "resource_group" {

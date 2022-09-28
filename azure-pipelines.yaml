@@ -12,7 +12,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
   # Service Connection Name
-  serviceConnectionName: 'Azure subscription 1 (3ca2aacf-c15c-4375-a828-0d64713c2e00)'
+  serviceConnectionName: 'ensuring-quality-releases'
 
   # Environment name
   environmentName: 'Test'
@@ -52,8 +52,8 @@ stages:
               commandOptions: '-backend-config=$(azsecret.secureFilePath) -reconfigure'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
-              backendAzureRmResourceGroupName: 'saasRG'
-              backendAzureRmStorageAccountName: 'tstate16811'
+              backendAzureRmResourceGroupName: 'appRG'
+              backendAzureRmStorageAccountName: 'tstate15484'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
               allowTelemetryCollection: true
