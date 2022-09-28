@@ -6,13 +6,13 @@ variables:
   python.version: "3.7.6"
   
   # web app name
-  webAppName: 'saasapp-type-AppService'
+  webAppName: 'project3App-type-AppService'
 
   # VM image Agent name
   vmImageName: 'ubuntu-latest'
 
   # Service Connection Name
-  serviceConnectionName: 'ensuring-quality-releases'
+  serviceConnectionName: 'eqReleases'
 
   # Environment name
   environmentName: 'Test'
@@ -152,7 +152,7 @@ stages:
       displayName: Deploy Virtual Machine
       environment:
         name:  $(environmentName)
-        resourceName: "saasapp-type-0-VM"
+        resourceName: "project3App-type-0-VM"
         resourceType: 'VirtualMachine'
         tags: 'demo' 
       strategy:
