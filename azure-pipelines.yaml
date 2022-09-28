@@ -69,9 +69,9 @@ stages:
             inputs:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+              commandOptions: '-lock=false'
               environmentServiceName: 'eqReleases'
               allowTelemetryCollection: true
-              commanOptions: '-lock=false'
             
           - task: TerraformCLI@0
             displayName: Terraform Apply
@@ -79,7 +79,6 @@ stages:
               command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               environmentServiceName: 'eqReleases'
-              commandOptions: '-lock=false'
               allowTelemetryCollection: true
               
   - stage: Build
