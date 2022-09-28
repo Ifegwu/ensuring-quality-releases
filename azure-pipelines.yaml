@@ -71,6 +71,7 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               environmentServiceName: 'eqReleases'
               allowTelemetryCollection: true
+              commanOptions: '-lock=false'
             
           - task: TerraformCLI@0
             displayName: Terraform Apply
