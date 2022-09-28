@@ -52,8 +52,8 @@ stages:
               commandOptions: '-backend-config=$(azsecret.secureFilePath)'
               backendType: 'azurerm'
               backendServiceArm: '$(serviceConnectionName)'
-              backendAzureRmResourceGroupName: 'saasRG'
-              backendAzureRmStorageAccountName: 'tstate21472'
+              backendAzureRmResourceGroupName: 'tstate'
+              backendAzureRmStorageAccountName: 'tstate5274'
               backendAzureRmContainerName: 'tstate'
               backendAzureRmKey: 'terraform.tfstate'
               allowTelemetryCollection: true

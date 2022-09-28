@@ -19,3 +19,9 @@ az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOU
 echo "storage_account_name: $STORAGE_ACCOUNT_NAME"
 echo "container_name: $CONTAINER_NAME"
 echo "access_key: $ACCOUNT_KEY"
+
+
+"appId": "7672ba44-ef61-4865-a91c-01e3c04741aa",
+  "displayName": "ensuring-quality-releases-sp",
+  "password": "yD78Q~KSQO~xCTNBIAoZ37YKyLpQla4umQjQqaig",
+  "tenant": "33e55062-7183-4ac7-b62b-3a2f4f351b3e"
