@@ -29,14 +29,14 @@ stages:
           - task: TerraformInstaller@0
             displayName: Install Terraform
             inputs:
-              terraformVersion: '1.2.5'
+              terraformVersion: '1.2.9'
 
           - task: TerraformCLI@0
             displayName: Terraform Init
             inputs:
               command: 'init'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              commandOptions: '-backend-config=$(azsecret.secureFilePath)'
+              commandOptions: '-backend-config=$(azsecret.secureFilePath) -lock=false'
               backendType: 'azurerm'
               backendServiceArm: 'eqReleases'
               backendAzureRmResourceGroupName: 'tstate'
@@ -69,7 +69,7 @@ stages:
             inputs:
               command: 'plan'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-              commandOptions: '-lock=false'
+              commandOptions: '-lock=false -out=$(System.DefaultWorkingDirectory)/terraform.tfplan'
               environmentServiceName: 'eqReleases'
               allowTelemetryCollection: true
             
