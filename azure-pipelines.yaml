@@ -139,7 +139,7 @@ stages:
       displayName: Deploy Virtual Machine
       environment:
         name:  Test
-        resourceName: "project3App-0-VM"
+        resourceName: "envLinuxVM"
         resourceType: 'VirtualMachine'
         tags: 'demo' 
       strategy:
