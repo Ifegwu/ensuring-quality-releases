@@ -12,10 +12,10 @@ variable "resourceNumber" {
 }
 
 variable "public_ip_address_id" {
-    default = "/subscriptions/3ca2aacf-c15c-4375-a828-0d64713c2e00/resourceGroups/devops3/providers/Microsoft.Network/publicIPAddresses/saasApp3-publicip"
+    default = "/subscriptions/3ca2aacf-c15c-4375-a828-0d64713c2e00/resourceGroups/devops3/providers/Microsoft.Network/publicIPAddresses/project3App-publicip"
 }    
 variable "subnet_id" {
-    default = "/subscriptions/3ca2aacf-c15c-4375-a828-0d64713c2e00/resourceGroups/devops3/providers/Microsoft.Network/virtualNetworks/saasApp3-NET-subnet1"
+    default = "/subscriptions/3ca2aacf-c15c-4375-a828-0d64713c2e00/resourceGroups/devops3/providers/Microsoft.Network/virtualNetworks/project3App-NET-subnet1"
 }
 
 variable "demo" {}

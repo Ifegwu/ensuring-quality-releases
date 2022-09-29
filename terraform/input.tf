@@ -10,13 +10,15 @@ variable "resource_group" {}
 variable "application_type" {}
 
 # Network
-variable virtual_network_name {}
-variable address_prefix_test {}
-variable address_space {}
+variable "virtual_network_name" {}
+variable "address_prefix_test" {
+    default = "10.5.1.0/24" 
+}
+variable "address_space" {}
 
 # VM
-variable vm_admin_user {
+variable "vm_admin_user" {
     default = "azureadmin"
 }
 
-variable demo {}
+variable "demo" {}
