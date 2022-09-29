@@ -248,7 +248,7 @@ stages:
                     sudo mkdir /var/log/selenium
                       sudo chmod 777 /var/log/selenium
                   fi
-                  python ./automatedtesting/selenium/login.py | sudo tee -a /var/log/selenium-tes.log
+                  python ./automatedtesting/selenium/run_ui_tests.py | sudo tee -a /var/log/selenium-tes.log
                   cd $(System.DefaultWorkingDirectory)
                   mkdir -p log/selenium 
                   sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
