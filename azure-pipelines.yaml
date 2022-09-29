@@ -29,7 +29,7 @@ stages:
           - task: TerraformInstaller@0
             displayName: Install Terraform
             inputs:
-              terraformVersion: '1.2.9'
+              terraformVersion: '1.2.5'
 
           - task: TerraformCLI@0
             displayName: Terraform Init
@@ -76,7 +76,7 @@ stages:
           - task: TerraformCLI@0
             displayName: Terraform Apply
             inputs:
-              command: 'apply'
+              command: 'state push errored.tfstate'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               commandOptions: '-lock=false'
               environmentServiceName: 'eqReleases'
