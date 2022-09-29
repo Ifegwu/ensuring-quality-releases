@@ -36,7 +36,7 @@ variable "address_space" {
 
 # VM
 variable "vm_admin_user" {
-    default = "azureadmin"
+    default = "akwari"
 }
 
 variable "demo" {
