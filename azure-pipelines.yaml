@@ -244,19 +244,21 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-              if [! -d /var/log/selenium ]; then
-                    sudo mkdir /var/log/selenium
-                      sudo chmod 777 /var/log/selenium
-                  fi
-                  python ./automatedtesting/selenium/run_ui_tests.py | sudo tee -a /var/log/selenium-test.log
-                  cd $(System.DefaultWorkingDirectory)
-                  mkdir -p log/selenium 
-                  sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
+            if [! -d /var/log/selenium ]; then
+                  sudo mkdir /var/log/selenium
+                  sudo chmod 777 /var/log/selenium
+            fi
+            python ./automatedtesting/selenium/run_ui_tests.py | sudo tee -a /var/log/selenium/selenium-test.log
+            cd $(System.DefaultWorkingDirectory)
+            mkdir -p log/selenium 
+            sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
+            ls -al
       - task: PublishBuildArtifacts@1
         displayName: Publish selenium logs
         inputs:
           targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
           artifactName: 'drop-selenium-logs'
+          publishLocation: 'pipeline'
 
     - job: perfomance_tests
       displayName: 'PerfomanceTests'
