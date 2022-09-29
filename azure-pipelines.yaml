@@ -76,7 +76,7 @@ stages:
           - task: TerraformCLI@0
             displayName: Terraform Apply
             inputs:
-              command: 'terraform state push errored.tfstate'
+              command: 'apply'
               workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
               commandOptions: '-lock=false'
               environmentServiceName: 'eqReleases'
