@@ -1,5 +1,7 @@
 # Azure GUIDS
-variable "subscription_id" {}
+variable "subscription_id" {
+    default = ""
+}
 variable "client_id" {
     default = ""
 }
