@@ -180,24 +180,22 @@ stages:
           inputs:
             script: |
               sudo npm install -g newman
-              workingDirectory: '$(System.DefaultWorkDirectory)'
+            workingDirectory: '$(System.DefaultWorkDirectory)'
         - task: CmdLine@2
           displayName: Regrassion tests
+          continueOnError: true
           inputs:
             script: |
-              newman run automatedtesting/postman/RegressionTests.postman_collection.json \
-                --reporters cli,junit \
-                --reporter-junit-export log/newman/newman.RegressionTests.xml
-            workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+              newman run automatedtesting/postman/RegressionTests.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/newman.RegressionTests.xml
+            workingDirectory: $(System.DefaultWorkingDirectory)/automatedtesting/postman
         - task: CmdLine@2
           displayName: Validation tests
+          continueOnError: true
           inputs:
             script: |
-              newman run automatedtesting/postman/ValidationTests.postman_collection.json \
-                --reporters cli,junit \
-                --reporter-junit-export log/newman/newman.ValidationTest.xml
-                ls -la $(System.DefaultWorkingDirectory)/log/newman/
-            workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+              newman run automatedtesting/postman/ValidationTests.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/newman.ValidationTest.xml
+              ls -la $(System.DefaultWorkingDirectory)/log/newman/
+            workingDirectory: $(System.DefaultWorkingDirectory)/automatedtesting/postman
                 
         - task: PublishPipelineArtifact@1
           displayName: Publish Newman logs
@@ -209,9 +207,10 @@ stages:
           inputs:
               testResultsFiles: '*.xml'
               searchFolder: '$(System.DefaultWorkingDirectory)/log/newman'
-              mergeTestResults: true
+              # mergeTestResults: true
               publishRunAttachments: true
               testRunTitle: 'PublisNewmanTestResults'
+              
     - job: UITests
       displayName: Selenium UI Tests
       steps:
