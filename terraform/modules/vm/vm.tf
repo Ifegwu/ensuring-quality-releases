@@ -22,8 +22,8 @@ resource "azurerm_linux_virtual_machine" "test" {
   resource_group_name   = "${var.resource_group}"
   size                  = "Standard_B1s"
   admin_username        = "${var.vm_admin_user}"
-  # network_interface_ids = [zurerm_network_interface.test.id]
-  network_interface_ids = [element(azurerm_network_interface.test.*.id, count.index)]
+   network_interface_ids = [zurerm_network_interface.test.id,]
+  #network_interface_ids = [element(azurerm_network_interface.test.*.id, count.index)]
   admin_ssh_key {
     #username   = "${var.vm_admin_user}"
     username    = "akwari"
