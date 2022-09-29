@@ -1,40 +1,42 @@
 # Azure GUIDS
 variable "subscription_id" {}
 variable "client_id" {
-    default = "6672ba44-rf61-4865-a91w-01e3c04e41aa"
+    default = ""
 }
 variable "client_secret" {
-    default = "6672ba44-rf61-4865-a91w-01e3c04e41aa"
+    default = ""
 }
 variable "tenant_id" {
-    default = "6672ba44-rf61-4865-a91w-01e3c04e41aa"
+    default = ""
 }
 
 # Resource Group/Location
 variable "location" {
-    default = "East US"
+    default = ""
 }
-variable "resource_group" {}
+variable "resource_group" {
+    default = ""
+}
 variable "application_type" {
-    default = "project3App"
+    default = ""
 }
 
 # Network
 variable "virtual_network_name" {
-    default = "project3App-vnet"
+    default = ""
 }
 variable "address_prefix_test" {
-    default = "10.5.1.0/24" 
+    default = "" 
 }
 variable "address_space" {
-    default = ["10.5.0.0/16"]
+    default = [""]
 }
 
 # VM
 variable "vm_admin_user" {
-    default = "azureadmin"
+    default = ""
 }
 
 variable "demo" {
-    default = "devops"
+    default = ""
 }
