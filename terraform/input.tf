@@ -5,12 +5,18 @@ variable "client_secret" {}
 variable "tenant_id" {}
 
 # Resource Group/Location
-variable "location" {}
+variable "location" {
+    default = "East US"
+}
 variable "resource_group" {}
-variable "application_type" {}
+variable "application_type" {
+    default = "project3App"
+}
 
 # Network
-variable "virtual_network_name" {}
+variable "virtual_network_name" {
+    default = "project3App-vnet"
+}
 variable "address_prefix_test" {
     default = "10.5.1.0/24" 
 }
@@ -23,4 +29,6 @@ variable "vm_admin_user" {
     default = "azureadmin"
 }
 
-variable "demo" {}
+variable "demo" {
+    default = "devops"
+}
