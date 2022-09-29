@@ -8,7 +8,7 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name  = data.azurerm_resource_group.test.name
-    storage_account_name  = var.storage_account_name
+    storage_account_name  = "${var.storage_account_name}"
     container_name        = "tstate"
     key                   = "terraform.tfstate"
     access_key            = "${var.access_key}"
@@ -17,8 +17,8 @@ terraform {
 
 #module "resource_group" {
 #  source               = "./modules/resource_group"
-#  resource_group       = var.resource_group
-#  location             = var.location
+#  resource_group       = "${var.resource_group}"
+#  location             = "${ var.location}"
 #}
 
 data "azurerm_resource_group" "test" {
@@ -26,7 +26,7 @@ data "azurerm_resource_group" "test" {
 }
 module "network" {
   source               = "./modules/network"
-  address_space        = ${var.address_space}"
+  address_space        = "${var.address_space}"
   location             = "${var.location}"
   virtual_network_name = "${var.virtual_network_name}"
   application_type     = "${var.application_type}"
@@ -48,11 +48,11 @@ module "nsg-test" {
 }
 module "appservice" {
   source           = "./modules/appservice"
-  location         = "${var.location"}
+  location         = "${var.location}"
   application_type = "${var.application_type}"
   resource_type    = "AppService"
   resource_group   = data.azurerm_resource_group.test.name
-  demo             = "${var.demo"}
+  demo             = "${var.demo}"
 }
 module "publicip" {
   source           = "./modules/publicip"
