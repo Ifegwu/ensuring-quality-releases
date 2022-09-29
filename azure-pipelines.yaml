@@ -39,9 +39,9 @@ stages:
               commandOptions: '-backend-config=$(azsecret.secureFilePath) -lock=false'
               backendType: 'azurerm'
               backendServiceArm: 'eqReleases'
-              backendAzureRmResourceGroupName: 'tstate'
-              backendAzureRmStorageAccountName: 'tstate5274'
-              backendAzureRmContainerName: 'tstate'
+              backendAzureRmResourceGroupName: 'tfstate'
+              backendAzureRmStorageAccountName: 'tfstate431'
+              backendAzureRmContainerName: 'tfstate'
               backendAzureRmKey: 'terraform.tfstate'
               allowTelemetryCollection: true
               

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-RESOURCE_GROUP_NAME=tstate
-STORAGE_ACCOUNT_NAME=tstate$RANDOM
-CONTAINER_NAME=tstate
+RESOURCE_GROUP_NAME=Azuredevops
+STORAGE_ACCOUNT_NAME=tfstate$RANDOM
+CONTAINER_NAME=tfstate
 
 # Create resource group
-az group create --name $RESOURCE_GROUP_NAME --location eastus
+az group create --name $RESOURCE_GROUP_NAME --location EastUS
 
 # Create storage account
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
