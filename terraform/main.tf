@@ -7,11 +7,10 @@ provider "azurerm" {
 }
 terraform {
   backend "azurerm" {
-    resource_group_name  = data.azurerm_resource_group.test.name
-    storage_account_name  = "${var.storage_account_name}"
-    container_name        = "tstate"
-    key                   = "terraform.tfstate"
-    access_key            = "${var.access_key}"
+    storage_account_name  = ""
+    container_name        = ""
+    key                   = ""
+    access_key            = ""
   }
 }
 
@@ -24,6 +23,7 @@ terraform {
 data "azurerm_resource_group" "test" {
   name = "tstate"
 }
+
 module "network" {
   source               = "./modules/network"
   address_space        = "${var.address_space}"
