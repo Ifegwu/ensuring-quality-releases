@@ -5,6 +5,7 @@ provider "azurerm" {
   client_secret   = var.client_secret
   features {}
 }
+
 terraform {
   backend "azurerm" {
     storage_account_name  = ""
@@ -14,6 +15,7 @@ terraform {
   }
 }
 
+#Not needed at the moment
 #module "resource_group" {
 #  source               = "./modules/resource_group"
 #  resource_group       = "${var.resource_group}"
