@@ -100,8 +100,8 @@ stages:
           - task: PublishPipelineArtifact@1
             displayName: Publish Fakerestapi as Artifact
             inputs:
-              TargetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
-              ArtifactName: 'drop-fakerestapi'
+              targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+              artifactName: 'drop-fakerestapi'
 
           - task: ArchiveFiles@2
             displayName: Archive Selenium
@@ -114,8 +114,8 @@ stages:
           - task: PublishPipelineArtifact@1
             displayName: Publish Selenium Artifact
             inputs:
-              TargetPath: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
-              ArtifactName: 'drop-selenium'
+              targetPath: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
+              artifactName: 'drop-selenium'
     
   - stage: Deploy
     jobs:
@@ -255,8 +255,8 @@ stages:
       - task: PublishBuildArtifacts@1
         displayName: Publish selenium logs
         inputs:
-          TargetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
-          ArtifactName: 'drop-selenium-logs'
+          targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
+          artifactName: 'drop-selenium-logs'
 
     - job: perfomance_tests
       displayName: 'PerfomanceTests'
