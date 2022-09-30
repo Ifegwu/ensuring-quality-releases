@@ -160,10 +160,10 @@ stages:
               # cat logs/selenium/ui_tests.log
               # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
               #wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w 'e39cbdbf-7d18-4869-a5f7-238cf674601d' -s 'DJm+g7o0ukA5K8Jjjx8agmdx1vd/lJbClV5chqI8pWjFQB/H5kc075kuk1SJD6BXpgGjjnTSf1I5dtZoWknnbA==' -d opinsights.azure.com
-              env: 
-                AZURE_LOG_ANALYTICS_ID: 'e39cbdbf-7d18-4869-a5f7-238cf674601d'
-                AZURE_LOG_ANALYTICS_PRIMARY_KEY: 'DJm+g7o0ukA5K8Jjjx8agmdx1vd/lJbClV5chqI8pWjFQB/H5kc075kuk1SJD6BXpgGjjnTSf1I5dtZoWknnbA=='
-            displayName: Execute UI functional tests using Selenium
+            #   env: 
+            #     AZURE_LOG_ANALYTICS_ID: 'e39cbdbf-7d18-4869-a5f7-238cf674601d'
+            #     AZURE_LOG_ANALYTICS_PRIMARY_KEY: 'DJm+g7o0ukA5K8Jjjx8agmdx1vd/lJbClV5chqI8pWjFQB/H5kc075kuk1SJD6BXpgGjjnTSf1I5dtZoWknnbA=='
+            # displayName: Execute UI functional tests using Selenium
 - stage: Test
   jobs:
   - job: IntegrationTests   
