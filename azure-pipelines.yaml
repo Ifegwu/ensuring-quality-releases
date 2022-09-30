@@ -147,16 +147,16 @@ stages:
         deploy:
           steps:
           - bash: |
-              cd $(Pipeline.Workspace)/selenium-atf
-              find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
-              unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
-              sudo mkdir -p /var/logs/selenium && sudo chmod 664 /var/logs/selenium
-              sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/logs/selenium/ui_tests.log
+              # cd $(Pipeline.Workspace)/selenium-atf
+              # find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
+              # unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
+              # sudo mkdir -p /var/logs/selenium && sudo chmod 664 /var/logs/selenium
+              # sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/logs/selenium/ui_tests.log
               # sudo python3 -u run_ui_tests.py | sudo dd of=/var/logs/selenium/ui_tests.log
-              cd $(System.DefaultWorkingDirectory)
-              mkdir -p logs/selenium
-              sudo cp /var/logs/selenium/ui_tests.log logs/selenium/ui_tests.log
-              sudo chmod 775 logs/selenium/ui_tests.log
+              # cd $(System.DefaultWorkingDirectory)
+              # mkdir -p logs/selenium
+              # sudo cp /var/logs/selenium/ui_tests.log logs/selenium/ui_tests.log
+              # sudo chmod 775 logs/selenium/ui_tests.log
               # cat logs/selenium/ui_tests.log
               # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
               #wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w 'e39cbdbf-7d18-4869-a5f7-238cf674601d' -s 'DJm+g7o0ukA5K8Jjjx8agmdx1vd/lJbClV5chqI8pWjFQB/H5kc075kuk1SJD6BXpgGjjnTSf1I5dtZoWknnbA==' -d opinsights.azure.com
@@ -178,6 +178,7 @@ stages:
       - bash: |
           npm install -g newman
           newman --version
+          cd $(System.DefaultWorkingDirectory)
           mkdir -p log/newman
         displayName: Install Newman
       - task: Bash@3
@@ -262,6 +263,7 @@ stages:
             mkdir -p log/selenium 
             sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
             ls -al
+            cd $(System.DefaultWorkingDirectory)
     - task: PublishBuildArtifacts@1
       displayName: Publish selenium logs
       inputs:
@@ -293,6 +295,7 @@ stages:
                 sudo mkdir /var/log/jmeter/endurance-test-html-report
                 sudo chmod 777 /var/log/jmeter/endurance-test-html-report
         fi 
+        cd $(System.DefaultWorkingDirectory)
       displayName: Install JMeter
     - task: Bash@3
       displayName: Spike Test
@@ -300,7 +303,8 @@ stages:
         targetType: 'inline'
         script: |
           #! /bin/bash
-
+          
+          cd $(System.DefaultWorkingDirectory)
           apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
                                       -l log/jmeter/stress-test-result.csv \
                                       -e -f -o log/jmeter \
@@ -312,6 +316,7 @@ stages:
         script: |
           #! /bin/bash
 
+          cd $(System.DefaultWorkingDirectory)
           apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/endurance-test.jmx \
                                     -l log/jmeter/endurance-test-result.csv \
                                     -e -f -o log/jmeter \
