@@ -294,20 +294,28 @@ stages:
                 sudo chmod 777 /var/log/jmeter/endurance-test-html-report
         fi 
       displayName: Install JMeter
-    - bash: |
-        apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
-                                    -l log/jmeter/stress-test-result.csv \
-                                    -e -f -o log/jmeter \
-                                    -j log/jmeter/jmeter-stress-test.log
-        cat log/jmeter/jmeter-stress-test.log
+    - task: Bash@3
       displayName: Spike Test
-    - bash: |
-        apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/endurance-test.jmx \
+      inputs: 
+        targetType: 'inline'
+        script: |
+          #! /bin/bash
+
+          apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
+                                      -l log/jmeter/stress-test-result.csv \
+                                      -e -f -o log/jmeter \
+                                      -j log/jmeter/jmeter-stress-test.log
+    - task: Bash@3
+      displayName: Endurance Test
+      inputs:
+        targetType: 'inline'
+        script: |
+          #! /bin/bash
+
+          apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/endurance-test.jmx \
                                     -l log/jmeter/endurance-test-result.csv \
                                     -e -f -o log/jmeter \
-                                    -j log/jmeter/jmeter-endurance-test.log
-        cat log/jmeter/jmeter-endurance-test.log                             
-      displayName: Endurance Test
+                                    -j log/jmeter/jmeter-endurance-test.log                            
     - task: ArchiveFiles@2
       displayName: Archive JMeter Stress Test HTML Report
       inputs:
@@ -324,11 +332,6 @@ stages:
         archiveType: 'zip'
         archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
         verbose: true
-    - bash: |
-          rm -rf log/jmeter/stress-test-html-report
-          rm -rf log/jmeter/endurance-test-html-report
-          cd log/jmeter/
-      displayName: Delete initial JMeter HTML test reports
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(System.DefaultWorkingDirectory)/log/jmeter'
