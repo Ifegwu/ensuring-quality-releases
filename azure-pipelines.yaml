@@ -275,14 +275,14 @@ stages:
     - bash: |
         apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
                                     -l log/jmeter/stress-test-result.csv \
-                                    -e -f -o log/jmeter/stress-test-html-report \
+                                    -e -f -o log/jmeter \
                                     -j log/jmeter/jmeter-stress-test.log
         cat log/jmeter/jmeter-stress-test.log
       displayName: Spike Test
     - bash: |
         apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/endurance-test.jmx \
                                     -l log/jmeter/endurance-test-result.csv \
-                                    -e -f -o log/jmeter/endurance-test-html-report \
+                                    -e -f -o log/jmeter \
                                     -j log/jmeter/jmeter-endurance-test.log
         cat log/jmeter/jmeter-endurance-test.log                             
       displayName: Endurance Test
@@ -292,7 +292,7 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report/stress-test-html-report-$(Build.BuildId).zip'
+        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip'
         verbose: true
     - task: ArchiveFiles@2
       displayName: Archive JMeter endurance test HTML report
@@ -300,7 +300,7 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report/endurance-test-html-report-$(Build.BuildId).zip'
+        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
         verbose: true
     - bash: |
           rm -rf log/jmeter/stress-test-html-report
