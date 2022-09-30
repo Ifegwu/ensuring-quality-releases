@@ -287,7 +287,7 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip'
+        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report/stress-test-html-report-$(Build.BuildId).zip'
         verbose: true
     - task: ArchiveFiles@2
       displayName: Archive JMeter endurance test HTML report
@@ -295,7 +295,7 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
+        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report/endurance-test-html-report-$(Build.BuildId).zip'
         verbose: true
     - bash: |
           rm -rf log/jmeter/stress-test-html-report
