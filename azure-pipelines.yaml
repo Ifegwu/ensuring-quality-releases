@@ -139,7 +139,7 @@ stages:
     displayName: Deploy Virtual Machine
     environment:
       name:  Test
-      resourceName: "envLinuxVM"
+      #resourceName: "envLinuxVM"
       resourceType: 'VirtualMachine'
       tags: 'demo' 
     strategy:
@@ -158,6 +158,11 @@ stages:
               sudo cp /var/logs/selenium/ui_tests.log logs/selenium/ui_tests.log
               sudo chmod 775 logs/selenium/ui_tests.log
               # cat logs/selenium/ui_tests.log
+              # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
+              wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w ${AZURE_LOG_ANALYTICS_ID} -s ${AZURE_LOG_ANALYTICS_PRIMARY_KEY} -d opinsights.azure.com
+              env: 
+                AZURE_LOG_ANALYTICS_ID: $(myLunux_workspace_id)
+                AZURE_LOG_ANALYTICS_PRIMARY_KEY: $(myLinux_primary_key)
             displayName: Execute UI functional tests using Selenium
 - stage: Test
   jobs:
