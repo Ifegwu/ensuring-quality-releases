@@ -180,18 +180,28 @@ stages:
           newman --version
           mkdir -p log/newman
         displayName: Install Newman
-      - bash: |
-          newman run automated-testing/postman/regression_tests.postman_collection.json \
+      - task: Bash@3
+        displayName: Regression tests
+        inputs:
+          targetType: 'inline'
+          script: |
+            #! /bin/bash
+            newman run automatedtesting/postman/regression_tests.postman_collection.json \
                     --reporters cli,junit \
                     --reporter-junit-export log/newman/regression_tests.xml \
                     --suppress-exit-code
-        displayName: Regression tests
-      - bash: |
-          newman run automated-testing/postman/validation_tests.postman_collection.json \
+      - task: Bash@3
+        displayName: 'Setup VM environment'
+        inputs:
+          targetType: 'inline'
+          script: |
+            #! /bin/bash
+
+            newman run automatedtesting/postman/validation_tests.postman_collection.json \
                     --reporters cli,junit \
                     --reporter-junit-export log/newman/validation_tests.xml
-          ls -la $(System.DefaultWorkingDirectory)/log/newman/
-        displayName: Data validation tests   
+            ls -la $(System.DefaultWorkingDirectory)/log/newman/
+          displayName: Data validation tests   
       - task: PublishPipelineArtifact@1
         displayName: Publish Newman logs
         inputs:
@@ -271,20 +281,32 @@ stages:
         tar xzvf jmeter.tgz
         apache-jmeter-5.4/bin/jmeter --version
         mkdir -p log/jmeter
+        if [ ! -d /var/log/jmeter ]; then
+                sudo mkdir /var/log/jmeter
+                sudo chmod 777 /var/log/jmeter
+        fi
+        if [ ! -d /var/log/jmeter/stress-test-html-report ]; then
+                sudo mkdir /var/log/jmeter/stress-test-html-report
+                sudo chmod 777 /var/log//stress-test-html-report
+        fi  
+        if [ ! -d /var/log/jmeter/endurance-test-html-report ]; then
+                sudo mkdir /var/log/jmeter/endurance-test-html-report
+                sudo chmod 777 /var/log/jmeter/endurance-test-html-report
+        fi 
       displayName: Install JMeter
     - bash: |
         apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
                                     -l log/jmeter/stress-test-result.csv \
                                     -e -f -o log/jmeter \
                                     -j log/jmeter/jmeter-stress-test.log
-        # cat log/jmeter/jmeter-stress-test.log
+        cat log/jmeter/jmeter-stress-test.log
       displayName: Spike Test
     - bash: |
         apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/endurance-test.jmx \
                                     -l log/jmeter/endurance-test-result.csv \
                                     -e -f -o log/jmeter \
                                     -j log/jmeter/jmeter-endurance-test.log
-        # cat log/jmeter/jmeter-endurance-test.log                             
+        cat log/jmeter/jmeter-endurance-test.log                             
       displayName: Endurance Test
     - task: ArchiveFiles@2
       displayName: Archive JMeter Stress Test HTML Report
