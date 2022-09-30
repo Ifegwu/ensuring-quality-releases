@@ -256,7 +256,8 @@ stages:
 
   - job: performance_tests
     displayName: PerformanceTests
-    pool: Default
+    pool:
+      vmImage: 'ubuntu-latest'
     steps:
     - bash: |
         sudo apt-get install openjdk-11-jre-headless -y
