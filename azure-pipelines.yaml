@@ -186,14 +186,14 @@ stages:
           continueOnError: true
           inputs:
             script: |
-              newman run automatedtesting/postman/RegressionTests.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/newman.RegressionTests.xml
+              newman run automatedtesting/postman/regression_tests.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/newman.RegressionTests.xml
             workingDirectory: $(System.DefaultWorkingDirectory)/automatedtesting/postman
         - task: CmdLine@2
           displayName: Validation tests
           continueOnError: true
           inputs:
             script: |
-              newman run automatedtesting/postman/ValidationTests.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/newman.ValidationTest.xml
+              newman run automatedtesting/postman/validation.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/newman.ValidationTest.xml
               ls -la $(System.DefaultWorkingDirectory)/log/newman/
             workingDirectory: $(System.DefaultWorkingDirectory)/automatedtesting/postman
                 
@@ -274,7 +274,7 @@ stages:
               displayName: 'Install JMeter'
             - bash: |
                 apache-jmeter-5.2/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
-                                      -l log/jmeter/stress-test-result.jtl \
+                                      -l log/jmeter/stress-test-result.csv \
                                       -e -f -o log/jmeter/stress-test-html-report \
                                       -j log/jmeter/jmeter-stress-test.log
                 cat log/jmeter/jmeter-stress-test.log

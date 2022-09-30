@@ -101,7 +101,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/endurance-test-result.jtl</stringProp>
+          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/endurance-test-result.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Activities" enabled="true">
@@ -120,7 +120,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">saasapp-type-appservice.azurewebsites.net</stringProp>
+          <stringProp name="HTTPSampler.domain">project3App-AppService.azurewebsites.net</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>

@@ -92,7 +92,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/stress-test-result.jtl</stringProp>
+          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/stress-test-result.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -120,7 +120,7 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">saasapp-type-appservice.azurewebsites.net</stringProp>
+          <stringProp name="HTTPSampler.domain">project3App-AppService.azurewebsites.net</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
