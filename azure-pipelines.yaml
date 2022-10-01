@@ -147,6 +147,13 @@ stages:
         deploy:
           steps:
           - bash: |
+              #! /bin/bash
+
+              sudo apt update
+              sudo apt install software-properties-common -y
+              sudo apt-add-repository ppa:universe -y
+              sudo apt-get update
+
               # cd $(Pipeline.Workspace)/selenium-atf
               # find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
               # unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
@@ -174,13 +181,18 @@ stages:
       - task: NodeTool@0
         displayName: Install Node v16.x
         inputs:
-          versionSpec: '16.x'
-      - bash: |
-          npm install -g newman
-          newman --version
-          cd $(System.DefaultWorkingDirectory)
-          mkdir -p log/newman
+          versionSpec: '12.x'
+      - task: Bash@3
         displayName: Install Newman
+        inputs:
+          targetType: 'inline'
+          script: |
+            #! /bin/bash
+
+            npm install -g newman
+            newman --version
+            cd $(System.DefaultWorkingDirectory)
+            mkdir -p log/newman
       - task: Bash@3
         displayName: Regression tests
         inputs:
@@ -192,17 +204,14 @@ stages:
                     --reporter-junit-export log/newman/regression_tests.xml \
                     --suppress-exit-code
       - task: Bash@3
-        displayName: 'Setup VM environment'
+        displayName: 'Validation tests'
         inputs:
           targetType: 'inline'
           script: |
             #! /bin/bash
 
-            newman run automatedtesting/postman/validation_tests.postman_collection.json \
-                    --reporters cli,junit \
-                    --reporter-junit-export log/newman/validation_tests.xml
-            ls -la $(System.DefaultWorkingDirectory)/log/newman/
-          displayName: Data validation tests   
+            newman run automatedtesting/postman/validation_tests.postman_collection.json --reporters cli,junit --reporter-junit-export log/newman/validation_tests.xml
+            ls -la $(System.DefaultWorkingDirectory)/log/newman/   
       - task: PublishPipelineArtifact@1
         displayName: Publish Newman logs
         inputs:
@@ -303,8 +312,6 @@ stages:
         targetType: 'inline'
         script: |
           #! /bin/bash
-
-          cd $(System.DefaultWorkingDirectory)
           apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
                                       -l log/jmeter/stress-test-result.csv \
                                       -e -f -o log/jmeter \
@@ -315,8 +322,6 @@ stages:
         targetType: 'inline'
         script: |
           #! /bin/bash
-
-          cd $(System.DefaultWorkingDirectory)
           apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/endurance-test.jmx \
                                     -l log/jmeter/endurance-test-result.csv \
                                     -e -f -o log/jmeter \
