@@ -99,7 +99,7 @@ stages:
     - task: PublishPipelineArtifact@1
       displayName: Publish Fakerestapi as Artifact
       inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip'
+        targetPath: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-fakerestapi.zip
         artifactName: 'drop-fakerestapi'
 
     - task: ArchiveFiles@2
@@ -107,13 +107,13 @@ stages:
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/selenium'
         includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip
         
     - task: PublishPipelineArtifact@1
       displayName: Publish Selenium Artifact
       inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip'
+        targetPath: $(Build.ArtifactStagingDirectory)/selenium-$(Build.BuildId).zip
         artifactName: 'drop-selenium'
     
 - stage: Deploy
@@ -303,7 +303,7 @@ stages:
         targetType: 'inline'
         script: |
           #! /bin/bash
-          
+
           cd $(System.DefaultWorkingDirectory)
           apache-jmeter-5.4/bin/jmeter -n -t automatedtesting/jmeter/stress-test.jmx \
                                       -l log/jmeter/stress-test-result.csv \
@@ -326,16 +326,16 @@ stages:
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report'
         includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip'
+        archiveType: zip
+        archiveFile: $(System.DefaultWorkingDirectory)/log/jmeter/stress-test-html-report-$(Build.BuildId).zip
         verbose: true
     - task: ArchiveFiles@2
       displayName: Archive JMeter endurance test HTML report
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report'
         includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip'
+        archiveType: zip
+        archiveFile: $(System.DefaultWorkingDirectory)/log/jmeter/endurance-test-html-report-$(Build.BuildId).zip
         verbose: true
     - task: PublishPipelineArtifact@1
       inputs:
