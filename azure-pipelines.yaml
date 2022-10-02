@@ -246,13 +246,12 @@ stages:
             mkdir -p log/selenium 
             sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
             ls -al
-    - task: PublishPipelineArtifact@1
+    - task: PublishBuildArtifacts@1
       displayName: Publish selenium logs
       inputs:
-        targetPath: '$(Pipeline.Workspace)/var/log/selenium/selenium-test.log'
+        targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
         artifactName: 'drop-selenium-logs'
-        artifactType: 'pipeline' 
-        fileSharePath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
+        publishLocation: 'pipeline'
 
   - job: performance_tests
     displayName: PerformanceTests
