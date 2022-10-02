@@ -1,7 +1,7 @@
-# ensuring-quality-releases
+# Ensuring Quality Releases
 ### Status
-####
-Badge: Here
+---
+#### Badge: ![](https://dev.azure.com/dandevops22/project3-app/_apis/build/status/Ifegwu.ensuring-quality-releases?branchName=main)
 ---
 ## Introduction
 #### This Azure DevOps project provides a concise steps to deploy IaC with with terraform, which creates and deployed virtual machine, Azure AppService to host a website - FakeRestAPI.
