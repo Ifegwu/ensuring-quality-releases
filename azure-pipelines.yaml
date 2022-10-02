@@ -241,17 +241,18 @@ stages:
                   sudo mkdir /var/log/selenium
                   sudo chmod 777 /var/log/selenium
             fi
-            python ./automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
+            python ./automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee /var/log/selenium/selenium-test.log
             cd $(System.DefaultWorkingDirectory)
             mkdir -p log/selenium 
             sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
             ls -al
-    - task: PublishBuildArtifacts@1
+    - task: PublishPipelineArtifact@1
       displayName: Publish selenium logs
       inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
+        targetPath: '$(Pipeline.Workspace)/var/log/selenium/selenium-test.log
         artifactName: 'drop-selenium-logs'
-        publishLocation: 'pipeline'
+        artifactType: 'pipeline' 
+        fileSharePath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
 
   - job: performance_tests
     displayName: PerformanceTests
