@@ -1,6 +1,9 @@
 /terraform/terraform.tfvars
 /terraform/.terraform
+/terraform/.terraform.lock.hcl
+/terraform/errored.tfstate
 jmeter.log
-/log
+/log/jmeter
 /automatedtesting/new.yml
 azsecret.conf
+
