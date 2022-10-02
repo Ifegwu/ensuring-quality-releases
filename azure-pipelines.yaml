@@ -241,7 +241,7 @@ stages:
                   sudo mkdir /var/log/selenium
                   sudo chmod 777 /var/log/selenium
             fi
-            python ./automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee /var/log/selenium/selenium-test.log
+            sudo python3 ./automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
             cd $(System.DefaultWorkingDirectory)
             mkdir -p log/selenium 
             sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
