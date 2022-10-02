@@ -1,0 +1,17 @@
+2022-10-02 15:06:27      Starting the browser...
+2022-10-02 15:06:29      Browser started successfully.
+2022-10-02 15:06:29      Navigating to the login page.
+2022-10-02 15:06:29      Loging in to https://www.saucedemo.com/
+2022-10-02 15:06:30      Searching for Products.
+2022-10-02 15:06:30      Successfully logged in <selenium.webdriver.remote.webelement.WebElement (session="d9e70e2180b4caf925ebca69add7e3f1", element="ec1a83c9-3b0c-43c2-82bb-f83edd62cd35")>.
+2022-10-02 15:06:30      Selecting products.
+2022-10-02 15:06:30      Adding products to cart.
+2022-10-02 15:06:30      Sauce Labs Backpack successfully added to cart.
+2022-10-02 15:06:30      Sauce Labs Bike Light successfully added to cart.
+2022-10-02 15:06:30      Sauce Labs Bolt T-Shirt successfully added to cart.
+2022-10-02 15:06:30      Sauce Labs Fleece Jacket successfully added to cart.
+2022-10-02 15:06:30      Sauce Labs Onesie successfully added to cart.
+2022-10-02 15:06:30      Test.allTheThings() T-Shirt (Red) successfully added to cart.
+2022-10-02 15:06:30      Verifying if cart has been populated with 6 products.
+2022-10-02 15:06:30      Navigating to shopping cart.
+2022-10-02 15:06:30      Removing products from cart.
