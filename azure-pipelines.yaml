@@ -157,12 +157,12 @@ stages:
               
               # chromium & Selenium installation
               sudo apt-get install -y chromium-browser
-
+              sudo apt-get install -y chromium-chromedriver
               #install chromedriver & export path
-              if [ ! -f $(Pipeline.Workspace)/chromedriver ]; then
-                    wget https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
-                    unzip chromedriver_linux64.zip
-              fi
+              # if [ ! -f $(Pipeline.Workspace)/chromedriver ]; then
+              #       wget https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
+              #       unzip chromedriver_linux64.zip
+              # fi
               export PATH=$PATH:$(Pipeline.Workspace)/chromedriver
 
               # Install selenium
