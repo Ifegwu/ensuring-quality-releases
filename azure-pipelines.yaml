@@ -154,16 +154,20 @@ stages:
               sudo apt-add-repository ppa:universe -y
               sudo apt-get update
               sudo pip3 install selenium
-              cd $(Pipeline.Workspace)/selenium-atf
-              find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
-              unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
+              cd $(Pipeline.Workspace)/drop-selenium
+              pwd
+              ls -al
+              # find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
+              unzip -o $(Pipeline.Workspace)/drop-selenium/selenium-$(Build.BuildId) -d .
               sudo mkdir -p /var/log/selenium && sudo chmod 777 /var/log/selenium
-              sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/ui_tests.log
-              # sudo python3 -u run_ui_tests.py | sudo dd of=/var/logs/selenium/ui_tests.log
+              ls -al
+              pwd
+              sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
+              # sudo python3 -u automatedtesting/selenium/run_ui_tests.py | sudo dd of=/var/logs/selenium/selenium-test.log
               # cd $(System.DefaultWorkingDirectory)
               # mkdir -p logs/selenium
-              # sudo cp /var/log/selenium/ui_tests.log log/selenium/ui_tests.log
-              # sudo chmod 777 log/selenium/ui_tests.log
+              # sudo cp /var/log/selenium/ui_tests.log log/selenium/selenium-test.log
+              # sudo chmod 777 log/selenium/selenium-test.log
               # cat log/selenium/ui_tests.log
               # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
 - stage: Test
