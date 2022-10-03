@@ -153,32 +153,26 @@ stages:
               sudo apt install software-properties-common -y
               sudo apt-add-repository ppa:universe -y
               sudo apt-get update
-
-              # cd $(Pipeline.Workspace)/selenium-atf
-              # find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
-              # unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
-              # sudo mkdir -p /var/logs/selenium && sudo chmod 664 /var/logs/selenium
-              # sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/logs/selenium/ui_tests.log
+              sudo pip3 install selenium
+              cd $(Pipeline.Workspace)/selenium-atf
+              find . -type f ! -name 'selenium-$(Build.BuildId).zip' -delete 
+              unzip -o $(Pipeline.Workspace)/selenium-atf/selenium-$(Build.BuildId) -d .
+              sudo mkdir -p /var/log/selenium && sudo chmod 777 /var/log/selenium
+              sudo python3 -u run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/ui_tests.log
               # sudo python3 -u run_ui_tests.py | sudo dd of=/var/logs/selenium/ui_tests.log
               # cd $(System.DefaultWorkingDirectory)
               # mkdir -p logs/selenium
-              # sudo cp /var/logs/selenium/ui_tests.log logs/selenium/ui_tests.log
-              # sudo chmod 775 logs/selenium/ui_tests.log
-              # cat logs/selenium/ui_tests.log
+              # sudo cp /var/log/selenium/ui_tests.log log/selenium/ui_tests.log
+              # sudo chmod 777 log/selenium/ui_tests.log
+              # cat log/selenium/ui_tests.log
               # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
-              #wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w 'e39cbdbf-7d18-4869-a5f7-238cf674601d' -s 'DJm+g7o0ukA5K8Jjjx8agmdx1vd/lJbClV5chqI8pWjFQB/H5kc075kuk1SJD6BXpgGjjnTSf1I5dtZoWknnbA==' -d opinsights.azure.com
-            #   env: 
-            #     AZURE_LOG_ANALYTICS_ID: 'e39cbdbf-7d18-4869-a5f7-238cf674601d'
-            #     AZURE_LOG_ANALYTICS_PRIMARY_KEY: 'DJm+g7o0ukA5K8Jjjx8agmdx1vd/lJbClV5chqI8pWjFQB/H5kc075kuk1SJD6BXpgGjjnTSf1I5dtZoWknnbA=='
-            # displayName: Execute UI functional tests using Selenium
 - stage: Test
   jobs:
-  - deployment: IntegrationTests
+  - job: IntegrationTests
     displayName: Integration Tests For UI and Selenium
     pool:
       vmImage: 'envLinuxVM'
-    environment: 'Test'
-  - steps:
+    steps:
     - task: CmdLine@2
       displayName: Install Newman
       inputs:
@@ -239,12 +233,10 @@ stages:
           script: |    
             #! /bin/bash
 
-            sudo pip3 install selenium
-
             # if [! -d /var/log/selenium ]; then
-            sudo mkdir /var/log/selenium
-            sudo chmod 777 /var/log/selenium
-            ls -al /var/log/
+            #   sudo mkdir /var/log/selenium
+            #   sudo chmod 777 /var/log/selenium
+            #   ls -al /var/log/
             # fi
             sudo python3 automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
             
