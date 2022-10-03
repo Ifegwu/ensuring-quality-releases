@@ -136,7 +136,7 @@ stages:
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
               deploymentMethod: 'auto'
   - deployment: VMDeploy
-    displayName: Deploy Virtual Machine
+    displayName: Functional UI Test
     environment:
       name:  Test
       #resourceName: "envLinuxVM"
@@ -153,6 +153,19 @@ stages:
               sudo apt install software-properties-common -y
               sudo apt-add-repository ppa:universe -y
               sudo apt-get update
+              
+              # Install Chromium
+              chromium & Selenium installation
+              sudo apt-get install -y chromium-browser
+
+              #install chromedriver & export path
+              if [ ! -f $(Pipeline.Workspace)/chromedriver ]; then
+                    wget https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
+                    unzip chromedriver_linux64.zip
+              fi
+              export PATH=$PATH:$(Pipeline.Workspace)/chromedriver
+
+              # Install selenium
               sudo pip3 install selenium
               cd $(Pipeline.Workspace)/drop-selenium
               pwd
@@ -170,10 +183,17 @@ stages:
               # sudo chmod 777 log/selenium/selenium-test.log
               # cat log/selenium/ui_tests.log
               # Install Log Analytics agent on Linux computers (only need to run once, comment when installed)
+          
+          - task: PublishBuildArtifacts@1
+            displayName: Publish selenium logs
+            inputs:
+              targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
+              artifactName: 'drop-selenium-logs'
+              publishLocation: 'pipeline'
 - stage: Test
   jobs:
   - job: IntegrationTests
-    displayName: Integration Tests For UI and Selenium
+    displayName: Integration Tests For UI
     pool:
       vmImage: 'envLinuxVM'
     steps:
@@ -200,60 +220,7 @@ stages:
         testResultsFiles: '**/TEST-*.xml' 
         searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman/' 
         publishRunAttachments: true
-            
-  - job: UITests
-    displayName: Selenium UI Tests
-    steps:
-    - task: Bash@3
-      displayName: 'Setup VM environment'
-      inputs:
-        targetType: 'inline'
-        script: |
-          #! /bin/bash
-
-          sudo apt-get upgrade -y
-          sudo apt-get install python3-pip -
-          sudo apt-get install unzip -y
-    - task: Bash@3
-      displayName: 'Configure Selenium, Chromium & chromedriver'
-      inputs:
-        targetType: 'inline'
-        script: |
-          #! /bin/bash
-
-          #chromium & Selenium installation
-          sudo apt-get install -y chromium-browser
-
-          #install chromedriver & export path
-          if [ ! -f $(Pipeline.Workspace)/chromedriver ]; then
-                wget https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
-                unzip chromedriver_linux64.zip
-          fi
-          export PATH=$PATH:$(Pipeline.Workspace)/chromedriver
-    - task: Bash@3
-      displayName: 'Run UI test'
-      inputs:
-          targetType: 'inline'
-          script: |    
-            #! /bin/bash
-
-            # if [! -d /var/log/selenium ]; then
-            #   sudo mkdir /var/log/selenium
-            #   sudo chmod 777 /var/log/selenium
-            #   ls -al /var/log/
-            # fi
-            sudo python3 automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
-            
-            # cd $(System.DefaultWorkingDirectory)
-            # sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
-            # ls -al
-    - task: PublishBuildArtifacts@1
-      displayName: Publish selenium logs
-      inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium-test.log'
-        artifactName: 'drop-selenium-logs'
-        publishLocation: 'pipeline'
-
+    
   - job: performance_tests
     displayName: PerformanceTests
     pool:
