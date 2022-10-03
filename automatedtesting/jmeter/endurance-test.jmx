@@ -55,7 +55,7 @@
         </HTTPSamplerProxy>
         <hashTree>
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
-            <stringProp name="filename">/home/akwari/ensuring-quality-releases/automatedtesting/jmeter/ids.csv</stringProp>
+            <stringProp name="filename">ids.csv</stringProp>
             <stringProp name="fileEncoding"></stringProp>
             <stringProp name="variableNames">Id</stringProp>
             <boolProp name="ignoreFirstLine">false</boolProp>
@@ -101,7 +101,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/akwari/ensuring-quality-releases/log/jmeter/endurance-test-result.csv</stringProp>
+          <stringProp name="filename">endurance-test-result.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Activities" enabled="true">
@@ -136,7 +136,7 @@
         </HTTPSamplerProxy>
         <hashTree>
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
-            <stringProp name="filename">/home/akwari/ensuring-quality-releases/automatedtesting/jmeter/activities-posts.csv</stringProp>
+            <stringProp name="filename">activities-posts.csv</stringProp>
             <stringProp name="fileEncoding"></stringProp>
             <stringProp name="variableNames"></stringProp>
             <boolProp name="ignoreFirstLine">false</boolProp>

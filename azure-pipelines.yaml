@@ -176,7 +176,7 @@ stages:
   - job: IntegrationTests
     displayName: Integration Tests For UI and Selenium
     pool:
-      vmImage: 'project3App-0-VM'
+      vmImage: 'ubuntu-latest'
     steps:
     - task: CmdLine@2
       displayName: Install Newman
@@ -240,14 +240,16 @@ stages:
 
             sudo pip3 install selenium
 
-            if [! -d /var/log/selenium ]; then
-                  sudo mkdir /var/log/selenium
-                  sudo chmod 777 /var/log/selenium
-            fi
+            # if [! -d /var/log/selenium ]; then
+            sudo mkdir /var/log/selenium
+            sudo chmod 777 /var/log/selenium
+            ls -al /var/log/
+            # fi
             sudo python3 automatedtesting/selenium/run_ui_tests.py 2>&1 | sudo tee -a /var/log/selenium/selenium-test.log
-            cd $(System.DefaultWorkingDirectory)
-            sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
-            ls -al
+            
+            # cd $(System.DefaultWorkingDirectory)
+            # sudo cp /var/log/selenium/selenium-test.log log/selenium/selenium-test.log  
+            # ls -al
     - task: PublishBuildArtifacts@1
       displayName: Publish selenium logs
       inputs:
@@ -267,6 +269,7 @@ stages:
         tar xzvf jmeter.tgz
         apache-jmeter-5.4/bin/jmeter --version
         mkdir -p log/jmeter
+         
         if [ ! -d /var/log/jmeter ]; then
                 sudo mkdir /var/log/jmeter
                 sudo chmod 777 /var/log/jmeter
