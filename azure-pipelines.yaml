@@ -155,7 +155,6 @@ stages:
               sudo apt-add-repository ppa:universe -y
               sudo apt-get update
               
-              # Install Chromium
               # chromium & Selenium installation
               sudo apt-get install -y chromium-browser
 
