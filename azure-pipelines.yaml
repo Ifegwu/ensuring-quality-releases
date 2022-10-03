@@ -173,10 +173,11 @@ stages:
             # displayName: Execute UI functional tests using Selenium
 - stage: Test
   jobs:
-  - job: IntegrationTests
+  - deployment: IntegrationTests
     displayName: Integration Tests For UI and Selenium
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'envLinuxVM'
+    environment: 'Test'
     steps:
     - task: CmdLine@2
       displayName: Install Newman
