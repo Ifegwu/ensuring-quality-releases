@@ -1,25 +1,93 @@
-2022-10-02T15:45:44.3328237Z 2022-10-02 15:45:44 INFO     Starting the browser...
-2022-10-02T15:45:45.7461920Z 2022-10-02 15:45:45 INFO     Browser started successfully.
-2022-10-02T15:45:45.7465985Z 2022-10-02 15:45:45 INFO     Navigating to the login page.
-2022-10-02T15:45:45.9822313Z 2022-10-02 15:45:45 INFO     Loging in to https://www.saucedemo.com/
-2022-10-02T15:45:46.2859216Z 2022-10-02 15:45:46 INFO     Searching for Products.
-2022-10-02T15:45:46.3201431Z 2022-10-02 15:45:46 INFO     Successfully logged in <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="94cd1d7f-b1a8-4bf8-af28-1138fc32e7ee")>.
-2022-10-02T15:45:46.3203049Z 2022-10-02 15:45:46 INFO     Selecting products.
-2022-10-02T15:45:46.3379103Z 2022-10-02 15:45:46 INFO     Adding products to cart.
-2022-10-02T15:45:46.3991786Z 2022-10-02 15:45:46 INFO     Sauce Labs Backpack successfully added to cart.
-2022-10-02T15:45:46.4574602Z 2022-10-02 15:45:46 INFO     Sauce Labs Bike Light successfully added to cart.
-2022-10-02T15:45:46.5224706Z 2022-10-02 15:45:46 INFO     Sauce Labs Bolt T-Shirt successfully added to cart.
-2022-10-02T15:45:46.5874610Z 2022-10-02 15:45:46 INFO     Sauce Labs Fleece Jacket successfully added to cart.
-2022-10-02T15:45:46.6631223Z 2022-10-02 15:45:46 INFO     Sauce Labs Onesie successfully added to cart.
-2022-10-02T15:45:46.7278677Z 2022-10-02 15:45:46 INFO     Test.allTheThings() T-Shirt (Red) successfully added to cart.
-2022-10-02T15:45:46.7280498Z 2022-10-02 15:45:46 INFO     Verifying if cart has been populated with 6 products.
-2022-10-02T15:45:46.7509990Z 2022-10-02 15:45:46 INFO     Navigating to shopping cart.
-2022-10-02T15:45:46.8076895Z 2022-10-02 15:45:46 INFO     Removing products from cart.
-2022-10-02T15:45:46.8805141Z 2022-10-02 15:45:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="a7398106-de20-4c76-9538-665f27bf0c64")> successfully removed from cart.
-2022-10-02T15:45:46.9407101Z 2022-10-02 15:45:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="d6071ba0-a6fd-41ad-a978-0942522816bc")> successfully removed from cart.
-2022-10-02T15:45:46.9957076Z 2022-10-02 15:45:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="af8d6388-8e82-4e67-9910-c47bc5bc04ea")> successfully removed from cart.
-2022-10-02T15:45:47.0508845Z 2022-10-02 15:45:47 INFO     <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="fd6ef9dc-5088-449b-bee1-320fccd2d0c0")> successfully removed from cart.
-2022-10-02T15:45:47.1061443Z 2022-10-02 15:45:47 INFO     <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="1ec6d678-6a30-4270-8f60-2157992ed500")> successfully removed from cart.
-2022-10-02T15:45:47.1600697Z 2022-10-02 15:45:47 INFO     <selenium.webdriver.remote.webelement.WebElement (session="3061a4c33a633ca6e96f0108d63255b9", element="d3e3ac1a-4ec2-40e4-90a8-f4738d045e7e")> successfully removed from cart.
-2022-10-02T15:45:47.1603346Z 2022-10-02 15:45:47 INFO     Confirming that shopping cart is empty.
-2022-10-02T15:45:47.1686031Z 2022-10-02 15:45:47 INFO     Shopping cart successfully emptied: True
+2022-10-03 08:54:36 INFO     Starting the browser...
+2022-10-03 08:54:42 INFO     Browser started successfully.
+2022-10-03 08:54:42 INFO     Navigating to the login page.
+2022-10-03 08:54:43 INFO     Loging in to https://www.saucedemo.com/
+2022-10-03 08:54:43 INFO     Searching for Products.
+2022-10-03 08:54:44 INFO     Successfully logged in <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="85108010-1aa5-4a92-8f0f-a37ee52bbb36")>.
+2022-10-03 08:54:44 INFO     Selecting products.
+2022-10-03 08:54:44 INFO     Adding products to cart.
+2022-10-03 08:54:44 INFO     Sauce Labs Backpack successfully added to cart.
+2022-10-03 08:54:44 INFO     Sauce Labs Bike Light successfully added to cart.
+2022-10-03 08:54:44 INFO     Sauce Labs Bolt T-Shirt successfully added to cart.
+2022-10-03 08:54:44 INFO     Sauce Labs Fleece Jacket successfully added to cart.
+2022-10-03 08:54:44 INFO     Sauce Labs Onesie successfully added to cart.
+2022-10-03 08:54:45 INFO     Test.allTheThings() T-Shirt (Red) successfully added to cart.
+2022-10-03 08:54:45 INFO     Verifying if cart has been populated with 6 products.
+2022-10-03 08:54:45 INFO     Navigating to shopping cart.
+2022-10-03 08:54:45 INFO     Removing products from cart.
+Sauce Labs Backpack
+2022-10-03 08:54:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="04da7f85-ed4d-467f-90b8-d9f9e1c4b251")> successfully removed from cart.
+Sauce Labs Bike Light
+2022-10-03 08:54:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="e15b9428-9119-4e26-a533-ac244da02a83")> successfully removed from cart.
+Sauce Labs Bolt T-Shirt
+2022-10-03 08:54:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="1aba5582-5362-4b87-b674-1c8c9c64e2fa")> successfully removed from cart.
+Sauce Labs Fleece Jacket
+2022-10-03 08:54:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="24727bce-c295-4706-a0ea-2b033562f766")> successfully removed from cart.
+Sauce Labs Onesie
+2022-10-03 08:54:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="2c65424f-c9ba-445c-8386-4d807bfb6951")> successfully removed from cart.
+Test.allTheThings() T-Shirt (Red)
+2022-10-03 08:54:46 INFO     <selenium.webdriver.remote.webelement.WebElement (session="d3dc6ff4bdbdca25e581d40e43c9e884", element="7258debb-c3d5-4e2d-bfca-74100e545343")> successfully removed from cart.
+2022-10-03 08:54:46 INFO     Confirming that shopping cart is empty.
+2022-10-03 08:54:46 INFO     Shopping cart successfully emptied: True
+2022-10-03 09:18:00 INFO     Starting the browser...
+2022-10-03 09:18:04 INFO     Browser started successfully.
+2022-10-03 09:18:04 INFO     Navigating to the login page.
+2022-10-03 09:18:05 INFO     Loging in to https://www.saucedemo.com/
+2022-10-03 09:18:05 INFO     Searching for Products.
+2022-10-03 09:18:05 INFO     Successfully logged in <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="eb3c52d2-2e78-4f02-bc4b-8642c38b52e0")>.
+2022-10-03 09:18:05 INFO     Selecting products.
+2022-10-03 09:18:05 INFO     Adding products to cart.
+2022-10-03 09:18:06 INFO     Sauce Labs Backpack successfully added to cart.
+2022-10-03 09:18:06 INFO     Sauce Labs Bike Light successfully added to cart.
+2022-10-03 09:18:06 INFO     Sauce Labs Bolt T-Shirt successfully added to cart.
+2022-10-03 09:18:06 INFO     Sauce Labs Fleece Jacket successfully added to cart.
+2022-10-03 09:18:06 INFO     Sauce Labs Onesie successfully added to cart.
+2022-10-03 09:18:06 INFO     Test.allTheThings() T-Shirt (Red) successfully added to cart.
+2022-10-03 09:18:06 INFO     Verifying if cart has been populated with 6 products.
+2022-10-03 09:18:06 INFO     Navigating to shopping cart.
+2022-10-03 09:18:07 INFO     Removing products from cart.
+Sauce Labs Backpack
+2022-10-03 09:18:07 INFO     <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="a76b838b-0ab5-40e2-999c-99fabad44646")> successfully removed from cart.
+Sauce Labs Bike Light
+2022-10-03 09:18:07 INFO     <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="d3497ac7-fa70-4777-be36-19db3fce007b")> successfully removed from cart.
+Sauce Labs Bolt T-Shirt
+2022-10-03 09:18:07 INFO     <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="b445c2bf-6a66-4fb9-a33b-872a781f8e38")> successfully removed from cart.
+Sauce Labs Fleece Jacket
+2022-10-03 09:18:07 INFO     <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="bfb64962-31b0-4e10-adfb-6ad368d97a77")> successfully removed from cart.
+Sauce Labs Onesie
+2022-10-03 09:18:07 INFO     <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="766a2a02-6cc5-4b48-8fb0-2d8bc262886b")> successfully removed from cart.
+Test.allTheThings() T-Shirt (Red)
+2022-10-03 09:18:07 INFO     <selenium.webdriver.remote.webelement.WebElement (session="0fe39d871952a739bdff21e4f0a0b3e9", element="dcf9c1fa-64f0-43fa-8dec-db038dcf7c4a")> successfully removed from cart.
+2022-10-03 09:18:07 INFO     Confirming that shopping cart is empty.
+2022-10-03 09:18:07 INFO     Shopping cart successfully emptied: True
+2022-10-03 09:45:41 INFO     Starting the browser...
+2022-10-03 09:45:47 INFO     Browser started successfully.
+2022-10-03 09:45:47 INFO     Navigating to the login page.
+2022-10-03 09:45:47 INFO     Loging in to https://www.saucedemo.com/
+2022-10-03 09:45:48 INFO     Searching for Products.
+2022-10-03 09:45:48 INFO     Successfully logged in <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="d1057b10-1e0b-4ae4-9855-1a6eda550de5")>.
+2022-10-03 09:45:48 INFO     Selecting products.
+2022-10-03 09:45:49 INFO     Adding products to cart.
+2022-10-03 09:45:49 INFO     Sauce Labs Backpack successfully added to cart.
+2022-10-03 09:45:49 INFO     Sauce Labs Bike Light successfully added to cart.
+2022-10-03 09:45:50 INFO     Sauce Labs Bolt T-Shirt successfully added to cart.
+2022-10-03 09:45:50 INFO     Sauce Labs Fleece Jacket successfully added to cart.
+2022-10-03 09:45:50 INFO     Sauce Labs Onesie successfully added to cart.
+2022-10-03 09:45:50 INFO     Test.allTheThings() T-Shirt (Red) successfully added to cart.
+2022-10-03 09:45:50 INFO     Verifying if cart has been populated with 6 products.
+2022-10-03 09:45:50 INFO     Navigating to shopping cart.
+2022-10-03 09:45:50 INFO     Removing products from cart.
+Sauce Labs Backpack
+2022-10-03 09:45:50 INFO     <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="a961311a-5f88-45a9-a66d-638b7a388214")> successfully removed from cart.
+Sauce Labs Bike Light
+2022-10-03 09:45:50 INFO     <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="a4e80d07-a1de-420b-90bd-27b7993786c2")> successfully removed from cart.
+Sauce Labs Bolt T-Shirt
+2022-10-03 09:45:50 INFO     <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="381fe6da-d478-430a-9f44-b16b5d604c68")> successfully removed from cart.
+Sauce Labs Fleece Jacket
+2022-10-03 09:45:50 INFO     <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="50beb4ff-ec07-4903-9e4b-8766fd770c6b")> successfully removed from cart.
+Sauce Labs Onesie
+2022-10-03 09:45:50 INFO     <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="d59749f4-d83c-4a9c-90ce-a7367b4a443f")> successfully removed from cart.
+Test.allTheThings() T-Shirt (Red)
+2022-10-03 09:45:51 INFO     <selenium.webdriver.remote.webelement.WebElement (session="db8a8f4e69cde04717d0fd69e0b0c602", element="3334589b-4b3e-4ec6-998c-14cd77e8c53d")> successfully removed from cart.
+2022-10-03 09:45:51 INFO     Confirming that shopping cart is empty.
+2022-10-03 09:45:51 INFO     Shopping cart successfully emptied: True

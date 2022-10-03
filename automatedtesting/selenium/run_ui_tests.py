@@ -64,7 +64,7 @@ def run_ui_tests(user, password):
 
     for product in cart_products:
         product_name = product.find_element(By.CSS_SELECTOR, '.inventory_item_name')
-        print(product_name.text)
+        logging.info(product_name.text)
         product_button = product.find_element(By.CSS_SELECTOR, 'button.cart_button')
         product_button.click()
         logging.info(str(product_name) + ' successfully removed from cart.')
