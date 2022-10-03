@@ -195,7 +195,7 @@ stages:
   - job: IntegrationTests
     displayName: Integration Tests For UI
     pool:
-      vmImage: 'envLinuxVM'
+      vmImage: 'ubuntu-latest'
     steps:
     - task: CmdLine@2
       displayName: Install Newman
