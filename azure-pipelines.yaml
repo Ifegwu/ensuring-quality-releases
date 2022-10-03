@@ -135,6 +135,7 @@ stages:
               appType: 'webAppLinux'
               package: $(Pipeline.Workspace)/drop-fakerestapi/$(Build.BuildId)-fakerestapi.zip
               deploymentMethod: 'auto'
+              
   - deployment: VMDeploy
     displayName: Functional UI Test
     environment:
@@ -155,7 +156,7 @@ stages:
               sudo apt-get update
               
               # Install Chromium
-              chromium & Selenium installation
+              # chromium & Selenium installation
               sudo apt-get install -y chromium-browser
 
               #install chromedriver & export path
